@@ -217,35 +217,113 @@ export default function Home() {
     }
   };
 
-  // 1. Preload all frames
+  // 1. Progressive ultra-fast frame loader with instant unlock & fallback streaming
   useEffect(() => {
     let loadedCount = 0;
-    const images: HTMLImageElement[] = [];
+    const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
+    const CRITICAL_MIN_FRAMES = 8; // Unlock preloader almost INSTANTLY (under 250ms)
 
-    const handleImageLoad = () => {
+    const checkProgress = () => {
       loadedCount++;
-      setLoadProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
-      if (loadedCount === TOTAL_FRAMES) {
+      const progress = Math.min(100, Math.round((loadedCount / TOTAL_FRAMES) * 100));
+      setLoadProgress(progress);
+
+      if (loadedCount >= CRITICAL_MIN_FRAMES || loadedCount === TOTAL_FRAMES) {
         setLoading(false);
       }
     };
 
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
+    const loadedIndices = new Set<number>();
+
+    const fetchFrame = (i: number) => {
+      if (loadedIndices.has(i)) return;
+      loadedIndices.add(i);
+
       const img = new Image();
       const frameNum = String(i).padStart(3, '0');
       img.src = `/frames/frame_${frameNum}.jpg`;
-      img.onload = handleImageLoad;
-      img.onerror = handleImageLoad;
-      images.push(img);
+      img.onload = () => {
+        images[i] = img;
+        checkProgress();
+      };
+      img.onerror = () => {
+        checkProgress();
+      };
+    };
+
+    // Priority load first 15 key frames for instant startup
+    for (let i = 0; i < 15; i++) {
+      fetchFrame(i);
+    }
+
+    // Stream all remaining frames concurrently in background
+    for (let i = 15; i < TOTAL_FRAMES; i++) {
+      fetchFrame(i);
     }
 
     imagesRef.current = images;
   }, []);
 
-  // 2. Track scroll and resize
-  useEffect(() => {
-    if (loading) return;
+  // Nearest-neighbor frame fallback to guarantee 0 lag and 0 black screen
+  const getBestAvailableImage = (targetIndex: number): HTMLImageElement | null => {
+    const images = imagesRef.current;
+    if (images[targetIndex] && images[targetIndex].complete && images[targetIndex].naturalWidth > 0) {
+      return images[targetIndex];
+    }
+    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+      const prev = targetIndex - offset;
+      if (prev >= 0 && images[prev] && images[prev].complete && images[prev].naturalWidth > 0) {
+        return images[prev];
+      }
+      const next = targetIndex + offset;
+      if (next < TOTAL_FRAMES && images[next] && images[next].complete && images[next].naturalWidth > 0) {
+        return images[next];
+      }
+    }
+    return null;
+  };
 
+  // Canvas drawing with automatic responsive viewport scaling (half-screen & full-screen compatible)
+  const drawFrame = (frameIndex: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const img = getBestAvailableImage(frameIndex);
+
+    if (!ctx || !img) return;
+
+    const width = window.innerWidth || document.documentElement.clientWidth || 1920;
+    const height = window.innerHeight || document.documentElement.clientHeight || 1080;
+
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const canvasRatio = width / height;
+
+    let dWidth = width;
+    let dHeight = height;
+    let dx = 0;
+    let dy = 0;
+
+    if (canvasRatio > imgRatio) {
+      dHeight = width / imgRatio;
+      dy = (height - dHeight) / 2;
+    } else {
+      dWidth = height * imgRatio;
+      dx = (width - dWidth) / 2;
+    }
+
+    ctx.drawImage(img, dx, dy, dWidth, dHeight);
+  };
+
+  // 2. Track scroll and resize with immediate canvas update
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -255,7 +333,6 @@ export default function Home() {
         targetFrameRef.current = progress * (TOTAL_FRAMES - 1);
       }
 
-      // Smart Header show/hide calculation with ref guard check to avoid re-renders
       const lastScrollY = lastScrollYRef.current;
       const nextShowHeader = currentScrollY <= 80 || currentScrollY < lastScrollY;
 
@@ -268,12 +345,7 @@ export default function Home() {
     };
 
     const handleResize = () => {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        drawFrame(Math.round(currentFrameRef.current));
-      }
+      drawFrame(Math.round(currentFrameRef.current));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -286,48 +358,17 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, [loading]);
+  }, []);
 
-  // 3. Draw frames onto canvas
-  const drawFrame = (frameIndex: number) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    const img = imagesRef.current[frameIndex];
-
-    if (!canvas || !ctx || !img) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const imgRatio = img.width / img.height;
-    const canvasRatio = canvas.width / canvas.height;
-    
-    let dWidth = canvas.width;
-    let dHeight = canvas.height;
-    let dx = 0;
-    let dy = 0;
-
-    if (canvasRatio > imgRatio) {
-      dHeight = canvas.width / imgRatio;
-      dy = (canvas.height - dHeight) / 2;
-    } else {
-      dWidth = canvas.height * imgRatio;
-      dx = (canvas.width - dWidth) / 2;
-    }
-
-    ctx.drawImage(img, dx, dy, dWidth, dHeight);
-  };
-
-  // 4. Animation loop (lerp)
+  // 3. Animation loop (lerp)
   useEffect(() => {
-    if (loading) return;
-
     const updateFrame = () => {
       const target = targetFrameRef.current;
       const current = currentFrameRef.current;
       
       const diff = target - current;
-      if (Math.abs(diff) > 0.05) {
-        currentFrameRef.current = current + diff * 0.15;
+      if (Math.abs(diff) > 0.02) {
+        currentFrameRef.current = current + diff * 0.18;
       } else {
         currentFrameRef.current = target;
       }
@@ -343,7 +384,7 @@ export default function Home() {
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, [loading]);
+  }, []);
 
   return (
     <main className="relative bg-[#030303] text-white overflow-x-hidden selection:bg-red-500 selection:text-white flex flex-col items-center justify-start p-4 md:p-8 gap-8">
@@ -368,8 +409,8 @@ export default function Home() {
       )}
 
       {/* Screen background viewport */}
-      {!loading && gateUnlocked && (
-        <div className="fixed inset-0 w-full h-full z-0 overflow-hidden bg-black">
+      {gateUnlocked && (
+        <div className="fixed inset-0 w-full h-full z-0 overflow-hidden bg-black pointer-events-none">
           <canvas ref={canvasRef} className="w-full h-full block object-cover opacity-65 md:opacity-85" />
           
           {/* Subtle cinematic gradient vignette */}
