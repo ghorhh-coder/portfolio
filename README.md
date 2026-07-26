@@ -34,3 +34,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+http://localhost:3000/#about I WANT IT MUST OPEN WHERE THE IMAGE OPEN OF DEVLOPER EVERYTHING MUST LOOKS LIKE GLASSY TRANSPARENT premium classy where image is not too big no too small only medium at down side of it show the legal age legal name location 
