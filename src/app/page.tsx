@@ -1178,7 +1178,7 @@ export default function Home() {
             </p>
             
             <a 
-              href="mailto:hello@vibecoder.com" 
+              href="mailto:ghorhh473@gmail.com" 
               className="group mt-4 inline-flex items-center justify-center gap-3.5 px-9 py-4.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-[11px] tracking-[0.2em] uppercase transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_10px_25px_rgba(239,68,68,0.3)]"
             >
               <span className="whitespace-nowrap">Send Email</span>
