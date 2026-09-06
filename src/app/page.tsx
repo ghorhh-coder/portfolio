@@ -2085,7 +2085,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-zinc-200 text-sm sm:text-[15px] leading-relaxed font-light">
-                      I&apos;m 16 — and I believe in being upfront about it. I work as a{' '}
+                      I&apos;m 17 — and I believe in being upfront about it. I work as a{' '}
                       <strong className="text-white font-semibold">fully accountable Independent Contractor</strong>,
                       with agreements co-signed by my parent. For you, this means:
                     </p>

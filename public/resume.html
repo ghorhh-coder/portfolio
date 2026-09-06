@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B2B Contractor Resume | AI Product Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+
   <style>
     :root {
       --bg: #030305;
@@ -28,7 +31,7 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
-      background-image: 
+      background-image:
         radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.08) 0%, transparent 45%),
         radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.06) 0%, transparent 45%);
       color: var(--text-main);
@@ -157,9 +160,17 @@
       opacity: 1;
     }
 
-    .action-menu-wrapper.active .action-item-btn:nth-child(1) { transition-delay: 0.05s; }
-    .action-menu-wrapper.active .action-item-btn:nth-child(2) { transition-delay: 0.1s; }
-    .action-menu-wrapper.active .action-item-btn:nth-child(3) { transition-delay: 0.15s; }
+    .action-menu-wrapper.active .action-item-btn:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .action-menu-wrapper.active .action-item-btn:nth-child(2) {
+      transition-delay: 0.1s;
+    }
+
+    .action-menu-wrapper.active .action-item-btn:nth-child(3) {
+      transition-delay: 0.15s;
+    }
 
     .action-item-btn:hover {
       background: rgba(239, 68, 68, 0.25);
@@ -496,12 +507,19 @@
     }
 
     .pdf-export-mode .meta-group {
-      color: #334155 !important;
+      color: #0f172a !important;
       font-size: 9.5px !important;
+      font-weight: 600 !important;
+    }
+
+    .pdf-export-mode .meta-group span {
+      color: #0f172a !important;
+      font-weight: 700 !important;
     }
 
     .pdf-export-mode .meta-link {
       color: #2563eb !important;
+      font-weight: 700 !important;
     }
 
     .pdf-export-mode .status-badge {
@@ -526,7 +544,8 @@
     .pdf-export-mode .summary-card p {
       font-size: 11px !important;
       line-height: 1.45 !important;
-      color: #334155 !important;
+      color: #1e293b !important;
+      font-weight: 400 !important;
     }
 
     .pdf-export-mode .section-title {
@@ -562,8 +581,9 @@
     .pdf-export-mode .eng-badge {
       background: #ffffff !important;
       border: 1px solid #cbd5e1 !important;
-      color: #475569 !important;
+      color: #334155 !important;
       font-size: 9px !important;
+      font-weight: 700 !important;
     }
 
     .pdf-export-mode .bullets {
@@ -575,7 +595,7 @@
       font-size: 10.5px !important;
       line-height: 1.38 !important;
       padding-left: 14px !important;
-      color: #334155 !important;
+      color: #1e293b !important;
     }
 
     .pdf-export-mode .bullets li::before {
@@ -583,12 +603,14 @@
     }
 
     .pdf-export-mode .skills-matrix {
-      gap: 8px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
     }
 
     .pdf-export-mode .skill-block {
-      padding: 8px 12px !important;
-      gap: 3px !important;
+      padding: 6px 12px !important;
+      gap: 2px !important;
       background: #f8fafc !important;
       border: 1px solid #e2e8f0 !important;
     }
@@ -600,8 +622,8 @@
 
     .pdf-export-mode .skill-tags {
       font-size: 10px !important;
-      line-height: 1.42 !important;
-      color: #334155 !important;
+      line-height: 1.4 !important;
+      color: #1e293b !important;
     }
 
     .pdf-export-mode strong {
@@ -653,15 +675,22 @@
       }
 
       .meta-group {
-        color: #334155 !important;
+        color: #0f172a !important;
         font-size: 9.5px !important;
+        font-weight: 600 !important;
         align-items: flex-end !important;
         gap: 2px !important;
+      }
+
+      .meta-group span {
+        color: #0f172a !important;
+        font-weight: 700 !important;
       }
 
       .meta-link {
         color: #2563eb !important;
         text-decoration: underline !important;
+        font-weight: 700 !important;
       }
 
       .status-badge {
@@ -687,7 +716,7 @@
       }
 
       .summary-card p {
-        color: #334155 !important;
+        color: #1e293b !important;
         font-size: 10.5px !important;
         line-height: 1.45 !important;
       }
@@ -729,8 +758,9 @@
       .eng-badge {
         background: #ffffff !important;
         border: 1px solid #cbd5e1 !important;
-        color: #475569 !important;
+        color: #334155 !important;
         font-size: 9px !important;
+        font-weight: 700 !important;
         padding: 2px 8px !important;
       }
 
@@ -740,7 +770,7 @@
       }
 
       .bullets li {
-        color: #334155 !important;
+        color: #1e293b !important;
         font-size: 10.2px !important;
         line-height: 1.38 !important;
         padding-left: 14px !important;
@@ -751,7 +781,9 @@
       }
 
       .skills-matrix {
-        gap: 8px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
@@ -759,8 +791,8 @@
       .skill-block {
         background: #f8fafc !important;
         border: 1px solid #e2e8f0 !important;
-        padding: 8px 12px !important;
-        gap: 4px !important;
+        padding: 6px 12px !important;
+        gap: 2px !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
@@ -770,25 +802,28 @@
       }
 
       .skill-tags {
-        color: #334155 !important;
+        color: #1e293b !important;
         font-size: 10px !important;
         line-height: 1.45 !important;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Floating Command Header Bar -->
   <div class="command-bar">
     <a href="/">&larr; Return To Portfolio</a>
-    
+
     <!-- Animated Speed Dial Action Menu -->
     <div class="action-menu-wrapper" id="actionMenu">
       <div class="action-items-container">
         <!-- Button 1: Download PDF -->
-        <button class="action-item-btn" onclick="handleDownloadPDF()" data-tooltip="Download PDF" title="Download PDF" aria-label="Download PDF">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="action-item-btn" onclick="handleDownloadPDF()" data-tooltip="Download PDF" title="Download PDF"
+          aria-label="Download PDF">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -796,8 +831,10 @@
         </button>
 
         <!-- Button 2: Save PDF -->
-        <button class="action-item-btn" onclick="handleSavePDF()" data-tooltip="Save PDF" title="Save PDF" aria-label="Save PDF">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="action-item-btn" onclick="handleSavePDF()" data-tooltip="Save PDF" title="Save PDF"
+          aria-label="Save PDF">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
             <polyline points="17 21 17 13 7 13 7 21"></polyline>
             <polyline points="7 3 7 8 15 8"></polyline>
@@ -805,8 +842,10 @@
         </button>
 
         <!-- Button 3: Print Resume -->
-        <button class="action-item-btn" onclick="handlePrint()" data-tooltip="Print Resume" title="Print Resume" aria-label="Print Resume">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <button class="action-item-btn" onclick="handlePrint()" data-tooltip="Print Resume" title="Print Resume"
+          aria-label="Print Resume">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 6 2 18 2 18 9"></polyline>
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
             <rect x="6" y="14" width="12" height="8"></rect>
@@ -815,8 +854,10 @@
       </div>
 
       <!-- Single Trigger Icon Button -->
-      <button class="action-trigger-btn" onclick="toggleActionMenu(event)" title="Actions & Export" aria-label="Toggle Export Actions">
-        <svg class="trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <button class="action-trigger-btn" onclick="toggleActionMenu(event)" title="Actions & Export"
+        aria-label="Toggle Export Actions">
+        <svg class="trigger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
           <rect x="6" y="14" width="12" height="8"></rect>
@@ -827,7 +868,7 @@
 
   <!-- Executive Digital Resume Sheet -->
   <div class="resume-container">
-    
+
     <!-- Top Header -->
     <div class="header">
       <div class="title-group">
@@ -844,10 +885,16 @@
           Email: <a href="mailto:ghorhh473@gmail.com" class="meta-link">ghorhh473@gmail.com</a>
         </div>
         <div>
-          GitHub: <a href="https://github.com/ghorhh-coder" target="_blank" rel="noopener noreferrer" class="meta-link">github.com/ghorhh-coder</a>
+          <!-- 👇 TYPE YOUR PHONE / WHATSAPP NUMBER HERE (e.g. +91 98765 43210) 👇 -->
+          Phone / WhatsApp: <a href="tel:+916375731543" class="meta-link">+91 6375731543</a>
         </div>
         <div>
-          Portfolio: <a href="https://portfolio-amber-iota-78.vercel.app" target="_blank" rel="noopener noreferrer" class="meta-link">portfolio-amber-iota-78.vercel.app</a>
+          GitHub: <a href="https://github.com/ghorhh-coder" target="_blank" rel="noopener noreferrer"
+            class="meta-link">github.com/ghorhh-coder</a>
+        </div>
+        <div>
+          Portfolio: <a href="https://portfolio-amber-iota-78.vercel.app" target="_blank" rel="noopener noreferrer"
+            class="meta-link">portfolio-amber-iota-78.vercel.app</a>
         </div>
         <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">
           Location: <span style="color: #e2e8f0;">India (IST) • Open for US/EU Async &amp; Overlap</span>
@@ -861,15 +908,18 @@
     <!-- Summary Box -->
     <div class="summary-card">
       <h3>Executive Summary</h3>
-      <p>AI-First Software Contractor & Product Engineer specializing in rapid production deployment, LLM Evals & Observability, multi-agent orchestration (LangGraph/LangChain), and vector retrieval pipelines (pgvector/Pinecone). Leveraging SOTA AI IDEs to ship production-ready, cost-optimized, and resilient AI platforms 5x faster than traditional software engineering lifecycles under flat monthly retainers.</p>
+      <p>AI-First Software Contractor & Product Engineer specializing in rapid production deployment, LLM Evals &
+        Observability, multi-agent orchestration (LangGraph/LangChain), and vector retrieval pipelines
+        (pgvector/Pinecone). Leveraging SOTA AI IDEs to ship production-ready, cost-optimized, and resilient AI
+        platforms 5x faster than traditional software engineering lifecycles under flat monthly retainers.</p>
     </div>
 
     <!-- Contract Engagements Section -->
     <div>
       <div class="section-title">Contract Engagements &amp; Proven Track Record</div>
-      
+
       <div class="engagement-grid">
-        
+
         <!-- Role 1 -->
         <div class="engagement-card">
           <div class="eng-header">
@@ -881,10 +931,14 @@
           </div>
 
           <ul class="bullets">
-            <li>Engineered from scratch a highly scalable, full-stack application for a bootstrapped founder, securing 0.3% founding equity based on architectural milestone delivery.</li>
-            <li>Architected and deployed a custom, zero-knowledge client-side encryption framework using Web Crypto API (AES-GCM/Diffie-Hellman) guaranteeing sub-100ms processing latency and absolute data privacy.</li>
-            <li>Integrated robust authentication structures supporting frictionless 1-click OAuth pipelines via Google, GitHub, and Microsoft for 10K+ user sessions.</li>
-            <li>Eliminated server-side single points of failure by shipping serverless edge workers, semantic caching (Redis), and automated push notification synchronization maintaining 99.9% uptime.</li>
+            <li>Engineered from scratch a highly scalable, full-stack application for a bootstrapped founder, securing
+              0.3% founding equity based on architectural milestone delivery.</li>
+            <li>Architected and deployed a custom, zero-knowledge client-side encryption framework using Web Crypto API
+              (AES-GCM/Diffie-Hellman) guaranteeing sub-100ms processing latency and absolute data privacy.</li>
+            <li>Integrated robust authentication structures supporting frictionless 1-click OAuth pipelines via Google,
+              GitHub, and Microsoft for 10K+ user sessions.</li>
+            <li>Eliminated server-side single points of failure by shipping serverless edge workers, semantic caching
+              (Redis), and automated push notification synchronization maintaining 99.9% uptime.</li>
           </ul>
         </div>
 
@@ -899,10 +953,14 @@
           </div>
 
           <ul class="bullets">
-            <li>Mastered 2+ years of SOTA AI IDE &amp; Agentic Tooling evolution (Cursor AI &rarr; Windsurf / Devin AI &rarr; Google Antigravity) accelerating software delivery velocity by up to 5x.</li>
-            <li>Engineered production-grade RAG and agentic workflows using LangGraph, pgvector, and Pinecone, reducing token cost by ~40% via dynamic model routing (Gemini 3.6 Flash / Sonnet).</li>
-            <li>Implemented end-to-end LLM Evaluation pipelines (LangSmith / OpenTelemetry) and adversarial prompt guardrails, achieving 95%+ instruction compliance and zero hallucination leaks.</li>
-            <li>Shipped cross-platform native installers (.msi, .exe) and mobile PWAs alongside full-stack TypeScript ecosystems (Next.js 16, React 19, Node.js, Prisma, Neon Postgres).</li>
+            <li>Mastered 2+ years of SOTA AI IDE &amp; Agentic Tooling evolution (Cursor AI &rarr; Windsurf / Devin AI
+              &rarr; Google Antigravity) accelerating software delivery velocity by up to 5x.</li>
+            <li>Engineered production-grade RAG and agentic workflows using LangGraph, pgvector, and Pinecone, reducing
+              token cost by ~40% via dynamic model routing (Gemini 3.6 Flash / Sonnet).</li>
+            <li>Implemented end-to-end LLM Evaluation pipelines (LangSmith / OpenTelemetry) and adversarial prompt
+              guardrails, achieving 95%+ instruction compliance and zero hallucination leaks.</li>
+            <li>Shipped cross-platform native installers (.msi, .exe) and mobile PWAs alongside full-stack TypeScript
+              ecosystems (Next.js 16, React 19, Node.js, Prisma, Neon Postgres).</li>
           </ul>
         </div>
 
@@ -912,26 +970,34 @@
     <!-- Core Technical Capability Matrix -->
     <div>
       <div class="section-title">Core Technical Capability Matrix</div>
-      
+
       <div class="skills-matrix">
         <div class="skill-block">
           <div class="skill-block-title">AI &amp; Agentic Orchestration</div>
-          <div class="skill-tags">Gemini 3.6 Flash/Pro, LangGraph &amp; LangChain, Vector DBs (pgvector / Pinecone), LLM Evals &amp; Tracing (LangSmith / OpenTelemetry), Hallucination Guardrails, RAG Pipelines, <strong style="color: var(--accent-red); font-weight: 700;">+ SOTA Model Routing</strong></div>
+          <div class="skill-tags">Gemini 3.6 Flash/Pro, LangGraph &amp; LangChain, Vector DBs (pgvector / Pinecone), LLM
+            Evals &amp; Tracing (LangSmith / OpenTelemetry), Hallucination Guardrails, RAG Pipelines, <strong
+              style="color: var(--accent-red); font-weight: 700;">+ SOTA Model Routing</strong></div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-title">Frontend &amp; Native Apps</div>
-          <div class="skill-tags">Next.js 16 (App Router), React 19 &amp; TypeScript, Desktop Apps (.msi, .exe), Mobile Apps (.apk, PWA), Glassmorphic UI Design, <strong style="color: var(--accent-red); font-weight: 700;">+ Any Modern UI Framework</strong></div>
+          <div class="skill-tags">Next.js 16 (App Router), React 19 &amp; TypeScript, Desktop Apps (.msi, .exe), Mobile
+            Apps (.apk, PWA), Glassmorphic UI Design, <strong style="color: var(--accent-red); font-weight: 700;">+ Any
+              Modern UI Framework</strong></div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-title">Backend &amp; Ecosystem</div>
-          <div class="skill-tags">Python (Asyncio / FastAPI), Node.js, Prisma ORM &amp; Postgres, Redis (Semantic Caching), Token Economics &amp; Cost Optimization, REST &amp; GraphQL APIs, <strong style="color: var(--accent-red); font-weight: 700;">+ Agnostic Stack Integration</strong></div>
+          <div class="skill-tags">Python (Asyncio / FastAPI), Node.js, Prisma ORM &amp; Postgres, Redis (Semantic
+            Caching), Token Economics &amp; Cost Optimization, REST &amp; GraphQL APIs, <strong
+              style="color: var(--accent-red); font-weight: 700;">+ Agnostic Stack Integration</strong></div>
         </div>
 
         <div class="skill-block">
           <div class="skill-block-title">Security &amp; Distribution</div>
-          <div class="skill-tags">Zero-Knowledge Crypto, OAuth 2.0 Auth, Native Installers (.msi/.exe), Vercel Edge &amp; Cloudflare, CI/CD Build Automation, <strong style="color: var(--accent-red); font-weight: 700;">+ Enterprise Custom Systems</strong></div>
+          <div class="skill-tags">Zero-Knowledge Crypto, OAuth 2.0 Auth, Native Installers (.msi/.exe), Vercel Edge
+            &amp; Cloudflare, CI/CD Build Automation, <strong style="color: var(--accent-red); font-weight: 700;">+
+              Enterprise Custom Systems</strong></div>
         </div>
       </div>
     </div>
@@ -952,7 +1018,7 @@
     function handleDownloadPDF() {
       const element = document.querySelector('.resume-container');
       const triggerBtn = document.querySelector('.action-trigger-btn');
-      
+
       if (triggerBtn) {
         triggerBtn.style.transform = 'scale(0.9)';
       }
@@ -961,12 +1027,12 @@
       document.body.classList.add('pdf-export-mode');
 
       const opt = {
-        margin:       [0.15, 0.15, 0.15, 0.15],
-        filename:     'AI_Product_Engineer_Resume.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#ffffff', scrollY: 0 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
-        pagebreak:    { mode: ['avoid-all'] }
+        margin: [0.15, 0.15, 0.15, 0.15],
+        filename: 'AI_Product_Engineer_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#ffffff', scrollY: 0 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all'] }
       };
 
       if (typeof html2pdf !== 'undefined') {
@@ -1014,4 +1080,5 @@
   </script>
 
 </body>
+
 </html>
