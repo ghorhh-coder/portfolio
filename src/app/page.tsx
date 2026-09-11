@@ -19,6 +19,16 @@ export default function Home() {
   const [activeQLinkImg, setActiveQLinkImg] = useState<number>(0);
   const [lightboxImageIndex, setLightboxImageIndex] = useState<number | null>(null);
 
+  // ── PromptOps Video Player State ──
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [videoVolume, setVideoVolume] = useState(1);
+  const [videoMuted, setVideoMuted] = useState(false);
+  const [videoShowControls, setVideoShowControls] = useState(true);
+  const videoControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Gating system states
   const [gateUnlocked, setGateUnlocked] = useState(true); // default to true to prevent server hydration mismatches
   const [gateStep, setGateStep] = useState(0);
@@ -418,44 +428,44 @@ export default function Home() {
         </div>
       )}
  
-      {/* Smart Header fixed at top of viewport (With responsive margins) */}
+      {/* Smart Header fixed at top of viewport (With responsive margins & frosted glass) */}
       {!loading && gateUnlocked && (
         <header 
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out bg-transparent ${
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out backdrop-blur-xl bg-black/60 border-b border-white/[0.08] ${
             showHeader ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0 pointer-events-none'
           }`}
         >
-          <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 md:px-12 py-3.5 flex items-center justify-between gap-4 flex-nowrap">
+          <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 py-3 flex items-center justify-between gap-3 sm:gap-4 flex-nowrap">
             {/* Logo Badge */}
             <a 
               href="#" 
-              className="font-display text-[15px] sm:text-[17px] font-extrabold tracking-[0.28em] text-white hover:text-red-500 transition-colors duration-300 select-none shrink-0"
+              className="font-display text-[14px] sm:text-[16px] md:text-[17px] font-extrabold tracking-[0.24em] text-white hover:text-red-500 transition-colors duration-300 select-none shrink-0"
             >
               VIBE<span className="text-red-500">CODER</span>
             </a>
    
-            {/* Navigation Links - Never hidden, scales size and wraps gracefully */}
-            <nav className="flex items-center flex-nowrap justify-center gap-x-3 sm:gap-x-5 md:gap-x-7 shrink-0">
-              <a href="#about" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">About</a>
-              <a href="#work" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Projects</a>
-              <a href="#tech" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Tech Stack</a>
-              <a href="#experience" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Experience</a>
-              <a href="#contact" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Contact</a>
+            {/* Navigation Links - Responsively scaled */}
+            <nav className="hidden sm:flex items-center flex-nowrap justify-center gap-x-2.5 sm:gap-x-4 md:gap-x-6 shrink-0">
+              <a href="#about" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">About</a>
+              <a href="#work" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Projects</a>
+              <a href="#tech" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Tech Stack</a>
+              <a href="#experience" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Experience</a>
+              <a href="#contact" className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-zinc-400 hover:text-white transition-colors duration-300 uppercase">Contact</a>
             </nav>
    
             {/* Right actions */}
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-nowrap">
+            <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 flex-nowrap">
               {/* Reset Gate Button - Continuous animated color cycle */}
               <button 
                 onClick={resetGate}
-                className="group relative inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-zinc-950/90 hover:bg-black border border-white/20 hover:border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.6)] transition-all duration-300 cursor-pointer shrink-0"
+                className="group relative inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-zinc-950/90 hover:bg-black border border-white/20 hover:border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.6)] transition-all duration-300 cursor-pointer shrink-0"
                 title="Reset Intake Gate"
               >
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                 </span>
-                <span className="font-black text-[10px] sm:text-[11px] tracking-[0.2em] uppercase animate-color-cycle">
+                <span className="font-black text-[9.5px] sm:text-[10.5px] tracking-[0.18em] uppercase animate-color-cycle">
                   VETTING GATE
                 </span>
               </button>
@@ -465,15 +475,13 @@ export default function Home() {
                 href="/resume.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-[10px] sm:text-[11px] tracking-[0.2em] text-white hover:text-red-400 transition-all duration-300 uppercase flex items-center gap-1.5 shrink-0 no-underline"
+                className="font-bold text-[9.5px] sm:text-[10.5px] tracking-[0.18em] text-white hover:text-red-400 transition-all duration-300 uppercase flex items-center gap-1.5 shrink-0 no-underline"
               >
                 <span>RESUME</span>
                 <svg className="w-3 h-3 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
-   
-
             </div>
           </div>
         </header>
@@ -481,24 +489,24 @@ export default function Home() {
 
       {/* Content overlays (Scrollable Layout Flow) */}
       {!loading && gateUnlocked && (
-         <div className="relative z-10 w-full flex flex-col items-center gap-12">
+         <div className="relative z-10 w-full flex flex-col items-center gap-6 sm:gap-8">
           
-          {/* Section 1: Hero Section */}
-          <section className="min-h-[92vh] flex flex-col justify-center items-center w-full max-w-[1440px] pl-8 pr-6 sm:pl-16 sm:pr-12 md:pl-20 md:pr-16 mx-auto pt-36 sm:pt-44 lg:pt-48 pb-10 select-none relative">
+          {/* Section 1: Hero Section with Safe Clearance */}
+          <section className="flex flex-col justify-center items-center w-full max-w-[1440px] pl-6 pr-6 sm:pl-12 sm:pr-12 md:pl-16 md:pr-16 mx-auto pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-4 select-none relative">
             <div className="w-full relative">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-center w-full relative">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start w-full relative">
                 
                 {/* Left Column: Bio & Core Info */}
-                <div className="md:col-span-8 lg:col-span-7 flex flex-col items-start text-left w-full">
+                <div className="md:col-span-7 lg:col-span-7 flex flex-col items-start text-left w-full">
                   
                   {/* Dynamic tag badge - Open for B2B Projects */}
-                  <div className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 mb-[36px] select-none shadow-[0_2px_10px_rgba(16,185,129,0.05)]">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 mb-5 sm:mb-6 select-none shadow-[0_2px_10px_rgba(16,185,129,0.05)]">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
-                    <span className="text-[10.5px] font-bold tracking-[0.2em] uppercase text-emerald-400">Open for B2B Projects</span>
+                    <span className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.2em] uppercase text-emerald-400">Open for B2B Projects</span>
                   </div>
                   
                   {/* Main Heading */}
-                  <h1 className="text-[2.6rem] sm:text-[3.3rem] lg:text-[3.7rem] xl:text-[4.2rem] font-display font-black tracking-tight uppercase leading-[1.08] text-white mb-[42px]">
+                  <h1 className="text-[2.6rem] sm:text-[3.3rem] lg:text-[3.7rem] xl:text-[4.2rem] font-display font-black tracking-tight uppercase leading-[1.08] text-white mb-5 sm:mb-6">
                     Building <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
                       Intelligent Software
@@ -507,12 +515,12 @@ export default function Home() {
                   </h1>
                   
                   {/* Short Description */}
-                  <p className="max-w-lg text-[14.5px] sm:text-[16.5px] font-sans text-zinc-300 tracking-wide font-light leading-relaxed break-words mb-[50px]">
+                  <p className="max-w-lg text-[14.5px] sm:text-[16.5px] font-sans text-zinc-300 tracking-wide font-light leading-relaxed break-words mb-6 sm:mb-7">
                     AI-First Contractor & AI-Product Engineer building production-ready software, intelligent automation, and modern web apps.
                   </p>
    
                   {/* Action Buttons (Premium soft gradient & glass) */}
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full sm:w-auto mb-[58px]">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full sm:w-auto mb-7 sm:mb-8">
                     <a 
                       href="#work" 
                       className="group relative transition-all duration-300 ease-out hover:scale-[1.02] shadow-[0_4px_20px_rgba(220,38,38,0.15)] hover:-translate-y-0.5"
@@ -674,8 +682,9 @@ export default function Home() {
                 </div>
                 
                 {/* Right Column: Cinematic Portrait & checklist glass overlay card */}
-                <div className="md:col-span-4 lg:col-span-5 flex items-center justify-center md:justify-end w-full select-none">
-                  <div className="relative w-[330px] h-[395px] sm:w-[390px] sm:h-[455px] md:w-[340px] md:h-[425px] lg:w-[465px] lg:h-[555px] xl:w-[515px] xl:h-[610px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group border border-white/5 mt-12 md:mt-0">
+                {/* Right Column: Cinematic Portrait & checklist glass overlay card */}
+                <div className="md:col-span-5 lg:col-span-5 flex items-start justify-center md:justify-end w-full select-none pt-4 sm:pt-6 md:pt-10 lg:pt-12">
+                  <div className="relative w-[280px] h-[340px] sm:w-[330px] sm:h-[400px] md:w-[320px] md:h-[390px] lg:w-[410px] lg:h-[490px] xl:w-[460px] xl:h-[550px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group border border-white/10 mt-6 sm:mt-8 md:mt-4 lg:mt-6">
                     <img 
                       src="/developer.png" 
                       alt="Developer Portrait" 
@@ -684,14 +693,14 @@ export default function Home() {
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                     
                     {/* Floating Glass Checklist Card */}
-                    <div className="absolute bottom-6 right-6 w-[200px] sm:w-[240px] p-4.5 rounded-2xl bg-black/45 border border-white/10 backdrop-blur-lg shadow-2xl flex flex-col gap-3">
+                    <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 w-[190px] sm:w-[230px] p-3.5 sm:p-4.5 rounded-2xl bg-black/55 border border-white/10 backdrop-blur-lg shadow-2xl flex flex-col gap-2.5 sm:gap-3">
                       {[
                         { text: "AI Products" },
                         { text: "Automation" },
                         { text: "Modern Web Apps" }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-3.5 font-bold text-white text-[11px] sm:text-xs">
-                          <span className="w-5 h-5 rounded-full bg-red-600/15 border border-red-500/25 flex items-center justify-center text-red-500 shrink-0 select-none">
+                        <div key={idx} className="flex items-center gap-3 font-bold text-white text-[10.5px] sm:text-xs">
+                          <span className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-red-600/15 border border-red-500/25 flex items-center justify-center text-red-500 shrink-0 select-none">
                             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
@@ -706,9 +715,9 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section 1.5: Currently Building - Scrollable Below the Fold */}
-          <section className="w-full max-w-[1440px] pl-8 pr-6 sm:pl-16 sm:pr-12 md:pl-20 md:pr-16 mx-auto pt-10 pb-16 sm:pb-24 select-none relative z-10">
-            <div className="flex items-center justify-center gap-4 mb-8 select-none">
+          {/* Section 1.5: Currently Building - Responsive Balance on all screen sizes */}
+          <section className="w-full max-w-[1440px] pl-6 pr-6 sm:pl-12 sm:pr-12 md:pl-16 md:pr-16 mx-auto pt-2 sm:pt-4 pb-14 sm:pb-18 md:pb-20 select-none relative z-10">
+            <div className="flex items-center justify-center gap-4 mb-6 sm:mb-8 select-none">
               <span className="h-px bg-gradient-to-r from-transparent to-white/10 flex-1" />
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
               <span className="text-[10px] font-bold tracking-[0.25em] text-zinc-400 uppercase">Currently Building</span>
@@ -716,14 +725,14 @@ export default function Home() {
               <span className="h-px bg-gradient-to-l from-transparent to-white/10 flex-1" />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="flex flex-wrap items-stretch justify-center gap-4 sm:gap-5 w-full">
               {[
                 { 
                   title: "Main Project", 
                   desc: "Q-Link Encrypted App", 
                   id: "qlink",
                   icon: (
-                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                     </svg>
                   )
@@ -733,7 +742,7 @@ export default function Home() {
                   desc: "Building intelligent products", 
                   id: "promptops",
                   icon: (
-                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                     </svg>
                   )
@@ -743,7 +752,7 @@ export default function Home() {
                   desc: "Creating tools for developers", 
                   id: "kora_ide",
                   icon: (
-                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
                     </svg>
                   )
@@ -753,7 +762,7 @@ export default function Home() {
                   desc: "Automating complex workflows", 
                   id: "web_search_agent",
                   icon: (
-                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                     </svg>
                   )
@@ -763,23 +772,23 @@ export default function Home() {
                   desc: "Contributing to the community", 
                   id: "open_source",
                   icon: (
-                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
                       <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.193 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" />
                     </svg>
                   )
                 }
-              ].map((card, idx) => (
+              ].map((card) => (
                 <div 
                   key={card.id} 
-                  className="p-6 rounded-2xl bg-zinc-950/40 border border-white/[0.05] hover:border-red-500/20 backdrop-blur-md flex items-center gap-5 hover:-translate-y-1 transition-all duration-300 ease-out select-none shadow-[0_4px_15px_rgba(0,0,0,0.15)] h-[104px] cursor-pointer"
+                  className="flex-1 min-w-[230px] max-w-[340px] p-5 sm:p-6 rounded-2xl bg-zinc-950/40 border border-white/[0.05] hover:border-red-500/20 backdrop-blur-md flex items-center gap-4 sm:gap-5 hover:-translate-y-1 transition-all duration-300 ease-out select-none shadow-[0_4px_15px_rgba(0,0,0,0.15)] min-h-[96px] cursor-pointer"
                   onClick={() => setActiveProjectModal(card.id)}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center shrink-0">
                     {card.icon}
                   </div>
                   <div className="flex flex-col gap-1 min-w-0">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-white break-words truncate">{card.title}</h3>
-                    <p className="text-[12px] text-zinc-400 font-light leading-snug break-words">{card.desc}</p>
+                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white break-words truncate">{card.title}</h3>
+                    <p className="text-[11.5px] sm:text-[12px] text-zinc-400 font-light leading-snug break-words">{card.desc}</p>
                   </div>
                 </div>
               ))}
@@ -788,9 +797,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* Section 2: Selected Work (Featured Projects Card Panel) */}
+      {/* Section 2: Selected Work (Featured Projects Card Panel) - Pushed down comfortably */}
       {!loading && gateUnlocked && (
-        <section id="work" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-8 sm:p-10 lg:p-12 relative overflow-hidden select-none">
+        <section id="work" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-8 sm:p-10 lg:p-12 relative overflow-hidden select-none mt-12 sm:mt-16 md:mt-20 lg:mt-24">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-20">
             <div className="flex flex-col gap-4">
               <span className="text-[11px] font-semibold tracking-[0.25em] text-red-400 uppercase inline-block">Featured Work</span>
@@ -1313,7 +1322,7 @@ export default function Home() {
               onClick={() => setActiveProjectModal(null)}
             >
               <div 
-                className="relative w-full max-w-5xl rounded-2xl bg-zinc-950 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col lg:flex-row gap-8 animate-scaleUp max-h-[90vh] overflow-y-auto p-6 sm:p-8"
+                className="relative w-full max-w-5xl rounded-2xl bg-zinc-950 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col lg:flex-row gap-8 animate-scaleUp max-h-[90vh] overflow-y-auto p-6 sm:p-8 pb-10 sm:pb-12"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Absolute Close Button */}
@@ -1478,7 +1487,7 @@ export default function Home() {
             {/* Modal Glass Window Wrapper */}
             <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 pointer-events-none select-none">
               <div
-                className="pointer-events-auto relative w-full max-w-6xl max-h-[90vh] rounded-2xl sm:rounded-3xl bg-zinc-950/90 border border-white/10 backdrop-blur-2xl shadow-[0_30px_90px_rgba(239,68,68,0.12)] overflow-y-auto p-5 pb-20 sm:p-8 sm:pb-32 md:p-10 md:pb-40 flex flex-col gap-8 sm:gap-10 animate-scaleUp text-white"
+                className="pointer-events-auto relative w-full max-w-5xl max-h-[88vh] rounded-3xl bg-zinc-950/95 border border-white/10 backdrop-blur-2xl shadow-[0_30px_90px_rgba(239,68,68,0.15)] overflow-y-auto p-6 sm:p-10 md:p-12 pb-12 sm:pb-16 flex flex-col gap-8 sm:gap-10 animate-scaleUp text-white"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Top Close Button */}
@@ -1492,7 +1501,321 @@ export default function Home() {
                   </svg>
                 </button>
 
-                {activeProjectModal === "qlink" ? (
+                {activeProjectModal === "promptops" ? (
+                  /* ── PROMPTOPS VIDEO CASE STUDY ── */
+                  (() => {
+                    const vid = project;
+                    const formatTime = (s: number) => {
+                      const m = Math.floor(s / 60);
+                      const sec = Math.floor(s % 60);
+                      return `${m}:${sec.toString().padStart(2, '0')}`;
+                    };
+                    const handleVideoToggle = () => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      if (v.paused) { v.play(); setVideoIsPlaying(true); }
+                      else { v.pause(); setVideoIsPlaying(false); }
+                    };
+                    const handleVideoSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      const t = (parseFloat(e.target.value) / 100) * v.duration;
+                      v.currentTime = t;
+                      setVideoProgress(parseFloat(e.target.value));
+                    };
+                    const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      const vol = parseFloat(e.target.value);
+                      v.volume = vol;
+                      setVideoVolume(vol);
+                      setVideoMuted(vol === 0);
+                      v.muted = vol === 0;
+                    };
+                    const handleMuteToggle = () => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      const next = !v.muted;
+                      v.muted = next;
+                      setVideoMuted(next);
+                    };
+                    const handleSkip = (seconds: number) => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      v.currentTime = Math.max(0, Math.min(v.duration, v.currentTime + seconds));
+                    };
+                    const handleFullscreen = () => {
+                      const v = videoRef.current;
+                      if (!v) return;
+                      if (document.fullscreenElement) { document.exitFullscreen(); }
+                      else { v.requestFullscreen(); }
+                    };
+                    const handleMouseMove = () => {
+                      setVideoShowControls(true);
+                      if (videoControlsTimerRef.current) clearTimeout(videoControlsTimerRef.current);
+                      videoControlsTimerRef.current = setTimeout(() => {
+                        if (videoIsPlaying) setVideoShowControls(false);
+                      }, 2800);
+                    };
+                    return (
+                      <div className="flex flex-col gap-8 w-full pb-8 sm:pb-12">
+                        {/* Header */}
+                        <div className="flex flex-col gap-3 border-b border-white/[0.08] pb-6">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-mono text-[10px] font-bold tracking-widest uppercase">
+                              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#ef4444]" />
+                              AI SaaS
+                            </span>
+                            <span className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-[10px] font-semibold tracking-wider">ENTERPRISE SECURITY</span>
+                            <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] font-semibold tracking-wider">DEMO WITH VOICE</span>
+                          </div>
+                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase pr-10">
+                            PromptOps Platform
+                          </h2>
+                          <p className="text-red-400 text-xs sm:text-sm font-semibold tracking-widest uppercase">Enterprise System Prompt Security &amp; Analytics SaaS</p>
+                          <p className="text-zinc-300 text-sm leading-relaxed font-light max-w-3xl">
+                            {vid.desc}
+                          </p>
+                        </div>
+
+                        {/* ── CUSTOM VIDEO PLAYER ── */}
+                        <div className="flex flex-col gap-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-zinc-500 uppercase flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                              Live Product Demo — Voiced Walkthrough
+                            </span>
+                            <span className="text-[10px] font-mono text-zinc-500">
+                              {formatTime(videoProgress * videoDuration / 100)} / {formatTime(videoDuration)}
+                            </span>
+                          </div>
+
+                          {/* Video Container */}
+                          <div
+                            className="group relative w-full rounded-2xl overflow-hidden border border-white/10 bg-black shadow-[0_20px_60px_rgba(0,0,0,0.8)] cursor-pointer select-none"
+                            style={{ aspectRatio: '16/9' }}
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={() => { if (videoIsPlaying) setVideoShowControls(false); }}
+                            onClick={handleVideoToggle}
+                          >
+                            <video
+                              ref={videoRef}
+                              src="/PromptOps_Demo_Voiced.mp4"
+                              className="w-full h-full object-cover"
+                              preload="metadata"
+                              playsInline
+                              onTimeUpdate={(e) => {
+                                const v = e.currentTarget;
+                                if (v.duration) setVideoProgress((v.currentTime / v.duration) * 100);
+                              }}
+                              onLoadedMetadata={(e) => setVideoDuration(e.currentTarget.duration)}
+                              onPlay={() => setVideoIsPlaying(true)}
+                              onPause={() => setVideoIsPlaying(false)}
+                              onEnded={() => { setVideoIsPlaying(false); setVideoProgress(0); }}
+                            />
+
+                            {/* Big Play Overlay (shows when paused) */}
+                            {!videoIsPlaying && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all duration-300">
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-600/90 border-2 border-red-400/40 flex items-center justify-center shadow-[0_0_40px_rgba(239,68,68,0.5)] hover:scale-110 transition-transform duration-200">
+                                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                  </svg>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Controls Bar */}
+                            <div
+                              className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 pb-4 pt-10 transition-all duration-300 ${videoShowControls || !videoIsPlaying ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {/* Progress Bar */}
+                              <div className="relative w-full h-1.5 group/progress mb-4 cursor-pointer">
+                                <div className="absolute inset-y-0 left-0 right-0 bg-white/20 rounded-full" />
+                                <div
+                                  className="absolute inset-y-0 left-0 bg-red-500 rounded-full transition-all duration-100"
+                                  style={{ width: `${videoProgress}%` }}
+                                />
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="100"
+                                  step="0.1"
+                                  value={videoProgress}
+                                  onChange={handleVideoSeek}
+                                  className="absolute inset-0 w-full opacity-0 cursor-pointer h-full"
+                                  aria-label="Video progress"
+                                />
+                                {/* Thumb indicator */}
+                                <div
+                                  className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-red-500 border-2 border-white shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200 pointer-events-none"
+                                  style={{ left: `calc(${videoProgress}% - 7px)` }}
+                                />
+                              </div>
+
+                              {/* Controls Row */}
+                              <div className="flex items-center justify-between gap-3">
+                                {/* Left: Play/Pause + Skip + Time */}
+                                <div className="flex items-center gap-3">
+                                  {/* Skip back 10s */}
+                                  <button
+                                    onClick={() => handleSkip(-10)}
+                                    className="text-white/70 hover:text-white transition-colors duration-150 cursor-pointer flex items-center"
+                                    title="Skip back 10s"
+                                    aria-label="Skip back 10 seconds"
+                                  >
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                                      <text x="8.5" y="15" fontSize="5" fontWeight="bold" fill="white" textAnchor="middle">10</text>
+                                    </svg>
+                                  </button>
+
+                                  {/* Play/Pause */}
+                                  <button
+                                    onClick={handleVideoToggle}
+                                    className="w-9 h-9 rounded-full bg-red-600 hover:bg-red-500 flex items-center justify-center text-white shadow-[0_0_15px_rgba(239,68,68,0.4)] hover:shadow-[0_0_20px_rgba(239,68,68,0.6)] transition-all duration-200 cursor-pointer shrink-0"
+                                    title={videoIsPlaying ? 'Pause' : 'Play'}
+                                    aria-label={videoIsPlaying ? 'Pause video' : 'Play video'}
+                                  >
+                                    {videoIsPlaying ? (
+                                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                      </svg>
+                                    ) : (
+                                      <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                      </svg>
+                                    )}
+                                  </button>
+
+                                  {/* Skip forward 10s */}
+                                  <button
+                                    onClick={() => handleSkip(10)}
+                                    className="text-white/70 hover:text-white transition-colors duration-150 cursor-pointer flex items-center"
+                                    title="Skip forward 10s"
+                                    aria-label="Skip forward 10 seconds"
+                                  >
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/>
+                                      <text x="15.5" y="15" fontSize="5" fontWeight="bold" fill="white" textAnchor="middle">10</text>
+                                    </svg>
+                                  </button>
+
+                                  {/* Timestamp */}
+                                  <span className="text-white/60 font-mono text-[11px] hidden sm:block select-none">
+                                    {formatTime(videoProgress * videoDuration / 100)} / {formatTime(videoDuration)}
+                                  </span>
+                                </div>
+
+                                {/* Right: Volume + Fullscreen */}
+                                <div className="flex items-center gap-3">
+                                  {/* Mute Toggle */}
+                                  <button
+                                    onClick={handleMuteToggle}
+                                    className="text-white/70 hover:text-white transition-colors duration-150 cursor-pointer"
+                                    title={videoMuted ? 'Unmute' : 'Mute'}
+                                    aria-label={videoMuted ? 'Unmute video' : 'Mute video'}
+                                  >
+                                    {videoMuted || videoVolume === 0 ? (
+                                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                                      </svg>
+                                    ) : videoVolume < 0.5 ? (
+                                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/>
+                                      </svg>
+                                    ) : (
+                                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                      </svg>
+                                    )}
+                                  </button>
+
+                                  {/* Volume Slider */}
+                                  <div className="hidden sm:flex items-center w-20 relative group/vol">
+                                    <div className="absolute inset-y-0 left-0 right-0 flex items-center">
+                                      <div className="w-full h-1 bg-white/20 rounded-full" />
+                                      <div
+                                        className="absolute h-1 bg-red-500 rounded-full pointer-events-none"
+                                        style={{ width: `${videoMuted ? 0 : videoVolume * 100}%` }}
+                                      />
+                                    </div>
+                                    <input
+                                      type="range"
+                                      min="0"
+                                      max="1"
+                                      step="0.02"
+                                      value={videoMuted ? 0 : videoVolume}
+                                      onChange={handleVolumeChange}
+                                      className="w-full opacity-0 h-4 cursor-pointer relative z-10"
+                                      aria-label="Volume"
+                                    />
+                                  </div>
+
+                                  {/* Fullscreen */}
+                                  <button
+                                    onClick={handleFullscreen}
+                                    className="text-white/70 hover:text-white transition-colors duration-150 cursor-pointer"
+                                    title="Toggle Fullscreen"
+                                    aria-label="Toggle fullscreen"
+                                  >
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Key Features */}
+                        <div>
+                          <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Key Features</span>
+                          <ul className="flex flex-col gap-3 mt-3">
+                            {vid.highlights.map((h, i) => (
+                              <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+                                <svg className="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                                <span className="flex-1 min-w-0">{h}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Tech Badges */}
+                        <div className="pb-2">
+                          <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Technologies</span>
+                          <div className="flex flex-wrap gap-2.5 mt-3 pl-1">
+                            {vid.tech.map((t, i) => (
+                              <span key={i} className="px-3.5 py-1.5 text-xs font-mono font-medium tracking-wide rounded-xl bg-white/[0.03] border border-white/[0.08] text-zinc-300 select-none hover:border-red-500/30 hover:text-white transition-all duration-300 whitespace-nowrap shrink-0">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Source Code CTA */}
+                        {vid.github && (
+                          <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+                            <a
+                              href={vid.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white font-bold text-xs tracking-wider uppercase transition-all duration-300"
+                            >
+                              <span>View Source Code</span>
+                            </a>
+                          </div>
+                        )}
+
+                        <div className="h-6 sm:h-10 w-full shrink-0" aria-hidden="true" />
+                      </div>
+                    );
+                  })()
+                ) : activeProjectModal === "qlink" ? (
                   /* ── Q-LINK ULTRA-PREMIUM GLASS CASE STUDY ── */
                   <div className="flex flex-col gap-8 sm:gap-10 w-full">
                     
@@ -1709,11 +2032,12 @@ export default function Home() {
                         </svg>
                       </a>
                     </div>
-
+                    {/* Bottom Safe Area Spacer */}
+                    <div className="h-6 sm:h-10 w-full shrink-0" aria-hidden="true" />
                   </div>
                 ) : (
                   /* ── OTHER PROJECTS MODAL ── */
-                  <div className="flex flex-col gap-8 w-full">
+                  <div className="flex flex-col gap-8 w-full pb-8 sm:pb-12">
                     <div>
                       <span className="text-[10px] font-mono font-bold tracking-widest text-red-500 uppercase">{project.category}</span>
                       <h3 className="text-2xl sm:text-3xl font-bold uppercase tracking-wider text-white mt-1 pr-10">{project.title}</h3>
@@ -1738,9 +2062,9 @@ export default function Home() {
                       </ul>
                     </div>
 
-                    <div>
+                    <div className="pb-2">
                       <span className="text-[10px] font-mono font-bold tracking-widest text-zinc-500 uppercase">Technologies</span>
-                      <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex flex-wrap gap-2.5 mt-3 pl-1">
                         {project.tech.map((t, i) => (
                           <span key={i} className="px-3.5 py-1.5 text-xs font-mono font-medium tracking-wide rounded-xl bg-white/[0.03] border border-white/[0.08] text-zinc-300 select-none hover:border-red-500/30 hover:text-white transition-all duration-300 whitespace-nowrap shrink-0">
                             {t}
@@ -1776,6 +2100,8 @@ export default function Home() {
                         )}
                       </div>
                     )}
+                    {/* Dedicated bottom safe area spacer to guarantee zero clipping from rounded corners */}
+                    <div className="h-6 sm:h-10 w-full shrink-0" aria-hidden="true" />
                   </div>
                 )}
               </div>
