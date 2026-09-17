@@ -66,14 +66,16 @@ export default function Home() {
   // Theme Toggle State and Persistence
   const [isLightTheme, setIsLightTheme] = useState(false);
 
-  // Keydown listener to close active project modal or lightbox on Escape & navigate lightbox with Arrow keys
+  // Keydown listener to close active project modal, lightbox, or vetting gate on Escape & navigate lightbox with Arrow keys
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (lightboxImageIndex !== null) {
           setLightboxImageIndex(null);
-        } else {
+        } else if (activeProjectModal !== null) {
           setActiveProjectModal(null);
+        } else if (!gateUnlocked) {
+          unlockGate();
         }
       } else if (lightboxImageIndex !== null) {
         if (e.key === 'ArrowLeft') {
@@ -83,7 +85,7 @@ export default function Home() {
         }
       }
     };
-    if (activeProjectModal || lightboxImageIndex !== null) {
+    if (activeProjectModal || lightboxImageIndex !== null || !gateUnlocked) {
       window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
     } else {
@@ -93,7 +95,7 @@ export default function Home() {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [activeProjectModal, lightboxImageIndex]);
+  }, [activeProjectModal, lightboxImageIndex, gateUnlocked]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -103,8 +105,10 @@ export default function Home() {
         document.documentElement.classList.add('light');
       }
       
-      const unlocked = localStorage.getItem('gate_unlocked') === 'true';
-      setGateUnlocked(unlocked);
+      // Default to unlocked for all new visitors (gate_unlocked is null)
+      // Only lock if explicitly requested
+      const isExplicitlyLocked = localStorage.getItem('gate_unlocked') === 'false';
+      setGateUnlocked(!isExplicitlyLocked);
     }
   }, []);
 
@@ -137,14 +141,13 @@ export default function Home() {
   }, [gateStep]);
 
   const unlockGate = () => {
-    localStorage.setItem('gate_unlocked', 'true');
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('gate_unlocked', 'true');
+    }
     setGateUnlocked(true);
   };
 
   const resetGate = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('gate_unlocked');
-    }
     setGateUnlocked(false);
     setGateStep(0);
     setGateQ1('');
@@ -455,11 +458,11 @@ export default function Home() {
    
             {/* Right actions */}
             <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 flex-nowrap">
-              {/* Reset Gate Button - Continuous animated color cycle */}
+              {/* Vetting Gate Button - Continuous animated color cycle */}
               <button 
                 onClick={resetGate}
                 className="group relative inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-zinc-950/90 hover:bg-black border border-white/20 hover:border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.6)] transition-all duration-300 cursor-pointer shrink-0"
-                title="Reset Intake Gate"
+                title="Cognitive Vetting Gate Questionnaire"
               >
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
@@ -2181,6 +2184,17 @@ export default function Home() {
           <div className="relative flex min-h-full items-center justify-center p-4 py-8">
           {/* Gating crystal glass container */}
           <div className="relative w-full max-w-3xl p-8 sm:p-12 md:p-14 rounded-2xl bg-zinc-950/80 border border-white/10 backdrop-blur-2xl shadow-2xl animate-scaleUp">
+            {/* Close / Dismiss Vetting Gate Button */}
+            <button
+              onClick={unlockGate}
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/10 border border-white/10 transition-colors duration-200 cursor-pointer z-20"
+              title="Close and explore portfolio directly"
+              aria-label="Close Vetting Gate"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             {/* Step 0: Gateway Intro */}
             {gateStep === 0 && (
               <div className="flex flex-col gap-8">
@@ -2611,6 +2625,22 @@ export default function Home() {
                 </p>
 
                 <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+                  <button
+                    onClick={unlockGate}
+                    className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '12px 24px',
+                      minHeight: '44px',
+                      height: 'auto',
+                      borderRadius: '12px',
+                      lineHeight: '1.2'
+                    }}
+                  >
+                    Explore Portfolio Directly
+                  </button>
                   <button
                     onClick={() => setGateStep(0)}
                     className="border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 font-semibold text-[10px] sm:text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer"
