@@ -1160,58 +1160,60 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4. Deep-Tech Executive Resume Card - Mathematical Precision, Zero Clipping, WCAG AAA */}
-          <div 
-            style={{ minHeight: "auto" }}
-            className="relative z-10 w-full p-6 sm:p-7 md:p-8 rounded-2xl bg-zinc-950 border border-zinc-800 hover:border-zinc-700 transition-colors duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-[0_20px_50px_rgba(0,0,0,0.7)]"
-          >
-            {/* Left Content Column - High Density, High Contrast */}
-            <div className="flex-1 min-w-0 flex flex-col gap-2.5 text-left">
+          {/* 4. Executive Resume Banner - Translucent Crystal Glass & Apple Spotlight CTA */}
+          <div className="relative z-10 w-full p-6 sm:p-8 lg:p-10 rounded-2xl bg-white/[0.025] hover:bg-white/[0.04] border border-white/[0.08] hover:border-red-500/30 backdrop-blur-xl transition-all duration-500 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            
+            {/* Left Content Column - Perfectly Aligned Translucent Layout */}
+            <div className="flex-1 min-w-0 flex flex-col gap-3 text-left w-full">
               <div className="flex items-center gap-3 flex-wrap">
-                <h3 className="text-zinc-100 text-lg sm:text-xl font-semibold tracking-tight m-0 p-0">
+                <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold tracking-wide m-0 p-0 font-display">
                   Need an Official B2B Contractor Resume?
                 </h3>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 font-mono text-[10.5px] font-medium tracking-wide">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[9.5px] font-bold tracking-widest uppercase flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
                   2+ YRS AI IDE TRACK RECORD
                 </span>
               </div>
 
-              {/* Subtext with Uniform Code-Block Tokens & WCAG Contrast */}
-              <div className="text-zinc-300 text-xs sm:text-[13px] leading-relaxed flex flex-col gap-1.5">
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="text-zinc-400">Structured 1-page executive sheet highlighting:</span>
-                  <code className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-200 font-mono text-[11px]">Cursor AI (5M)</code>
-                  <span className="text-zinc-600 font-bold">&rarr;</span>
-                  <code className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-200 font-mono text-[11px]">Windsurf / Devin (1.5Y)</code>
-                  <span className="text-zinc-600 font-bold">&rarr;</span>
-                  <code className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-emerald-400 font-mono text-[11px]">Antigravity (4M)</code>
+              {/* Subtext with Glass Tokens & Ample Line Height */}
+              <div className="flex flex-col gap-2 text-zinc-300 text-xs sm:text-sm font-light leading-relaxed">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-zinc-400 font-normal">Structured 1-page executive sheet highlighting:</span>
+                  <span className="px-2.5 py-0.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-zinc-200 font-mono text-xs">Cursor AI (5M)</span>
+                  <span className="text-zinc-500 font-bold">&rarr;</span>
+                  <span className="px-2.5 py-0.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-zinc-200 font-mono text-xs">Windsurf / Devin (1.5Y)</span>
+                  <span className="text-zinc-500 font-bold">&rarr;</span>
+                  <span className="px-2.5 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 font-mono text-xs font-semibold">Antigravity (4M)</span>
                 </div>
-                <p className="text-zinc-400 text-xs leading-normal m-0 p-0">
+                <p className="text-zinc-400 text-xs sm:text-[13px] font-normal leading-relaxed m-0 p-0">
                   Engineering progression, high-concurrency real-time engines, and verifiable production architecture.
                 </p>
               </div>
             </div>
 
-            {/* Right Action Column - Linear / Vercel Precision CTA */}
-            <div className="shrink-0 flex flex-col items-start md:items-end gap-2 w-full md:w-auto">
+            {/* Right Action Column - Apple Vision Glass Pill with Moving Spotlight Sheen */}
+            <div className="shrink-0 flex flex-col items-center lg:items-end gap-2 w-full lg:w-auto">
               <a
                 href="/resume.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-lg bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-xs tracking-wide transition-all shadow-sm hover:shadow active:scale-[0.98] cursor-pointer no-underline w-full sm:w-auto"
+                className="group/btn relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/20 hover:border-white/40 text-white font-semibold text-xs tracking-wider uppercase backdrop-blur-xl transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_15px_35px_rgba(239,68,68,0.2)] cursor-pointer no-underline overflow-hidden w-full sm:w-auto"
               >
-                <span>View / Print B2B Resume</span>
-                <svg className="w-3.5 h-3.5 text-zinc-700 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                {/* Spotlight Sheen Beam */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+                {/* Ambient Radial Spotlight Glow */}
+                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500/20 via-rose-500/20 to-purple-500/20 opacity-0 group-hover/btn:opacity-100 blur-md transition-opacity duration-500 -z-10" />
+
+                <span className="relative z-10 whitespace-nowrap">View / Print B2B Resume</span>
+                <svg className="relative z-10 w-4 h-4 text-zinc-300 group-hover/btn:text-white transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v5.5m0-5.5L11.25 12.75M6 18h12" />
                 </svg>
               </a>
 
-              {/* Clean Micro-Copy with Precise Spacing */}
-              <span className="text-[11px] font-mono text-zinc-400 flex items-center gap-2 select-none">
-                <span>ATS-Optimized</span>
-                <span className="text-zinc-600">&bull;</span>
-                <span>PDF &amp; Web Formats</span>
+              {/* Clean Micro-Copy */}
+              <span className="text-[11px] font-mono text-zinc-400 flex items-center gap-1.5 select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                ATS-Optimized &bull; PDF &amp; Web Formats
               </span>
             </div>
           </div>
