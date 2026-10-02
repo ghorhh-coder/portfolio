@@ -473,16 +473,17 @@ export default function Home() {
                 </span>
               </button>
 
-              {/* Resume Header Link */}
+              {/* Resume Header Glass Pill */}
               <a 
                 href="/resume.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-[9.5px] sm:text-[10.5px] tracking-[0.18em] text-white hover:text-red-400 transition-all duration-300 uppercase flex items-center gap-1.5 shrink-0 no-underline"
+                className="group relative px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.14] hover:border-white/30 backdrop-blur-xl font-bold text-[9.5px] sm:text-[10.5px] tracking-[0.18em] text-white transition-all duration-300 uppercase flex items-center gap-1.5 shrink-0 no-underline shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:shadow-[0_4px_15px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.4)] overflow-hidden"
               >
-                <span>RESUME</span>
-                <svg className="w-3 h-3 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+                <span className="relative z-10">RESUME</span>
+                <svg className="relative z-10 w-3 h-3 text-zinc-300 group-hover:text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
@@ -833,63 +834,75 @@ export default function Home() {
           {/* Bento Grid: 1 Col (Mobile) -> 2 Col (Tablet) -> 3 Col (Desktop) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Project 1 */}
+            {/* Project 1 - PromptOps */}
             <div 
-              className="sm:col-span-2 lg:col-span-2 p-6 sm:p-8 lg:p-10 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between min-h-[250px] sm:min-h-[280px] shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] cursor-pointer hover:scale-[1.01]"
+              className="group sm:col-span-2 lg:col-span-2 relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.1] hover:border-white/30 backdrop-blur-2xl transition-all duration-500 flex flex-col justify-between min-h-[260px] sm:min-h-[290px] shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.3)] cursor-pointer hover:scale-[1.01]"
               onClick={() => setActiveProjectModal("promptops")}
             >
-              <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-xs sm:text-sm font-bold text-red-400">01</div>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase bg-zinc-900/40 px-3 py-1 rounded-full border border-white/5">Full Stack SaaS</span>
+              <div className="absolute -right-20 -top-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-red-500/20 transition-all duration-700" />
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+              <div className="relative z-10 flex justify-between items-center">
+                <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/[0.15] flex items-center justify-center text-xs sm:text-sm font-bold text-red-400 shadow-inner group-hover:border-red-500/40 transition-colors">01</div>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">Full Stack SaaS</span>
               </div>
-              <div className="mt-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white break-words">PromptOps (AI SaaS)</h3>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white group-hover:text-red-300 transition-colors break-words">PromptOps (AI SaaS)</h3>
                 <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">A production-grade prompt operations and analysis hub designed to audit, filter, and inspect complex system prompts of commercial AI agents and models.</p>
               </div>
             </div>
  
-            {/* Project 2 */}
+            {/* Project 2 - Web Search Agent */}
             <div 
-              className="sm:col-span-1 lg:col-span-1 p-6 sm:p-8 lg:p-10 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between min-h-[250px] sm:min-h-[280px] shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] cursor-pointer hover:scale-[1.01]"
+              className="group sm:col-span-1 lg:col-span-1 relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.1] hover:border-white/30 backdrop-blur-2xl transition-all duration-500 flex flex-col justify-between min-h-[260px] sm:min-h-[290px] shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.3)] cursor-pointer hover:scale-[1.01]"
               onClick={() => setActiveProjectModal("web_search_agent")}
             >
-              <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-xs sm:text-sm font-bold text-red-400">02</div>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase bg-zinc-900/40 px-3 py-1 rounded-full border border-white/5">Automation</span>
+              <div className="absolute -right-20 -top-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-700" />
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+              <div className="relative z-10 flex justify-between items-center">
+                <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/[0.15] flex items-center justify-center text-xs sm:text-sm font-bold text-cyan-400 shadow-inner group-hover:border-cyan-500/40 transition-colors">02</div>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">Automation</span>
               </div>
-              <div className="mt-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white break-words">Web Search Agent</h3>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white group-hover:text-cyan-300 transition-colors break-words">Web Search Agent</h3>
                 <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">An autonomous multi-agent system executing recursive search, extraction, and automated report aggregation loops.</p>
               </div>
             </div>
  
-            {/* Project 3 */}
+            {/* Project 3 - Kora IDE */}
             <div 
-              className="sm:col-span-1 lg:col-span-1 p-6 sm:p-8 lg:p-10 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between min-h-[250px] sm:min-h-[280px] shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] cursor-pointer hover:scale-[1.01]"
+              className="group sm:col-span-1 lg:col-span-1 relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.1] hover:border-white/30 backdrop-blur-2xl transition-all duration-500 flex flex-col justify-between min-h-[260px] sm:min-h-[290px] shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.3)] cursor-pointer hover:scale-[1.01]"
               onClick={() => setActiveProjectModal("kora_ide")}
             >
-              <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-xs sm:text-sm font-bold text-red-400">03</div>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase bg-zinc-900/40 px-3 py-1 rounded-full border border-white/5">Developer Tool</span>
+              <div className="absolute -right-20 -top-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-500/20 transition-all duration-700" />
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+              <div className="relative z-10 flex justify-between items-center">
+                <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/[0.15] flex items-center justify-center text-xs sm:text-sm font-bold text-amber-400 shadow-inner group-hover:border-amber-500/40 transition-colors">03</div>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">Developer Tool</span>
               </div>
-              <div className="mt-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white break-words">Kora IDE</h3>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white group-hover:text-amber-300 transition-colors break-words">Kora IDE</h3>
                 <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">Autonomous local AI-powered code editor connecting Monaco workspace buffers with local LLM diagnostics.</p>
               </div>
             </div>
  
-            {/* Project 4 */}
+            {/* Project 4 - Q-Link Platform */}
             <div 
-              className="sm:col-span-2 lg:col-span-2 p-6 sm:p-8 lg:p-10 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between min-h-[250px] sm:min-h-[280px] shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] cursor-pointer hover:scale-[1.01]"
+              className="group sm:col-span-2 lg:col-span-2 relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.1] hover:border-white/30 backdrop-blur-2xl transition-all duration-500 flex flex-col justify-between min-h-[260px] sm:min-h-[290px] shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.3)] cursor-pointer hover:scale-[1.01]"
               onClick={() => setActiveProjectModal("qlink")}
             >
-              <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-xs sm:text-sm font-bold text-red-400">04</div>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase bg-zinc-900/40 px-3 py-1 rounded-full border border-white/5">Secure PWA</span>
+              <div className="absolute -right-20 -top-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/20 transition-all duration-700" />
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+              <div className="relative z-10 flex justify-between items-center">
+                <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/[0.15] flex items-center justify-center text-xs sm:text-sm font-bold text-emerald-400 shadow-inner group-hover:border-emerald-500/40 transition-colors">04</div>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">Secure Real-Time PWA</span>
               </div>
-              <div className="mt-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white break-words">Q-Link Chat</h3>
-                <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">Client-side end-to-end encrypted messaging Progressive Web App utilizing the native browser Web Crypto API.</p>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white group-hover:text-emerald-300 transition-colors break-words">Q-Link Platform</h3>
+                <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">Next-generation real-time encrypted communications platform with WebSocket state engines, ephemeral media auto-purge, and desktop integration.</p>
               </div>
             </div>
           </div>
@@ -1147,28 +1160,40 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4. PDF Resume Download Card */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-red-950/30 via-zinc-950 to-zinc-950 border border-red-500/30 flex flex-col lg:flex-row items-center justify-between gap-6 backdrop-blur-xl relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-            <div className="flex flex-col gap-2 text-center sm:text-left">
-              <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-                <span className="text-white text-lg font-bold tracking-wide">Need an Official B2B Contractor Resume?</span>
-                <span className="px-2.5 py-0.5 rounded-full bg-red-500/20 border border-red-500/30 text-red-300 font-mono text-[9.5px] font-bold">
+          {/* 4. PDF Resume Download Card - Apple Glass & Dynamic Spotlight */}
+          <div className="relative z-10 w-full p-6 sm:p-8 lg:p-9 rounded-3xl bg-gradient-to-b from-white/[0.06] via-zinc-950/90 to-black/95 border border-white/[0.12] hover:border-white/[0.22] backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 shadow-[0_30px_80px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.18)] transition-all duration-500 overflow-hidden group/card">
+            {/* Ambient Spotlight Gradients */}
+            <div className="absolute -right-16 -top-16 w-72 h-72 bg-red-600/10 rounded-full blur-3xl pointer-events-none group-hover/card:bg-red-600/20 transition-all duration-700" />
+            <div className="absolute -left-16 -bottom-16 w-72 h-72 bg-rose-500/10 rounded-full blur-3xl pointer-events-none group-hover/card:bg-rose-500/15 transition-all duration-700" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_70%)] pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col gap-2.5 text-center sm:text-left max-w-2xl">
+              <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+                <span className="text-white text-lg sm:text-xl font-bold tracking-tight">Need an Official B2B Contractor Resume?</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.15] text-zinc-200 font-mono text-[10px] font-semibold tracking-wider backdrop-blur-md shadow-inner">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   2+ YRS AI IDE TRACK RECORD
                 </span>
               </div>
-              <span className="text-zinc-400 text-xs font-light leading-relaxed">
-                Structured 1-page executive sheet highlighting <strong className="text-zinc-200 font-medium">Cursor AI (5M) &rarr; Windsurf/Devin (1.5Y) &rarr; Antigravity (4M)</strong> evolution.
-              </span>
+              <p className="text-zinc-400 text-xs sm:text-[13px] font-normal leading-relaxed">
+                Structured 1-page executive sheet highlighting <strong className="text-zinc-200 font-medium">Cursor AI (5M) &rarr; Windsurf/Devin (1.5Y) &rarr; Antigravity (4M)</strong> evolution & verifiable production architecture.
+              </p>
             </div>
 
+            {/* Apple Vision Pro Glass Button with Shimmer & Spotlight */}
             <a
               href="/resume.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="group shrink-0 inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] no-underline cursor-pointer w-full lg:w-auto"
+              className="relative z-10 group/btn shrink-0 inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-b from-white/[0.14] via-white/[0.05] to-transparent hover:from-white/[0.22] hover:via-white/[0.09] hover:to-white/[0.02] border border-white/[0.22] hover:border-white/40 text-white font-semibold text-xs tracking-wider uppercase backdrop-blur-2xl transition-all duration-500 shadow-[0_15px_35px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.4),inset_0_-1px_1px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(255,255,255,0.1),inset_0_1px_2px_rgba(255,255,255,0.6)] cursor-pointer no-underline overflow-hidden w-full lg:w-auto"
             >
-              <span>View / Print B2B Resume</span>
-              <svg className="w-4 h-4 text-white shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              {/* Shimmer Light Beam */}
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+              {/* Ambient Glow */}
+              <span className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-red-500/20 via-rose-500/20 to-purple-500/20 opacity-0 group-hover/btn:opacity-100 blur-md transition-opacity duration-500 -z-10" />
+
+              <span className="relative z-10 whitespace-nowrap pl-1">View / Print B2B Resume</span>
+              <svg className="relative z-10 w-4 h-4 text-zinc-300 group-hover/btn:text-white transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v5.5m0-5.5L11.25 12.75M6 18h12" />
               </svg>
             </a>
