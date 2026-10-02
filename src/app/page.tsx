@@ -781,17 +781,23 @@ export default function Home() {
                     </svg>
                   )
                 }
-              ].map((card) => (
+              ].map((card, idx) => (
                 <div 
                   key={card.id} 
-                  className="flex-1 min-w-[230px] max-w-[340px] p-5 sm:p-6 rounded-2xl bg-zinc-950/40 border border-white/[0.05] hover:border-red-500/20 backdrop-blur-md flex items-center gap-4 sm:gap-5 hover:-translate-y-1 transition-all duration-300 ease-out select-none shadow-[0_4px_15px_rgba(0,0,0,0.15)] min-h-[96px] cursor-pointer"
+                  style={{
+                    animation: `cardStaggerEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 130 + 100}ms backwards`
+                  }}
+                  className="group relative overflow-hidden flex-1 min-w-[230px] max-w-[340px] p-5 sm:p-6 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] hover:border-red-500/40 backdrop-blur-xl flex items-center gap-4 sm:gap-5 hover:-translate-y-1.5 transition-all duration-500 ease-out select-none shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.15),inset_0_1px_1px_rgba(255,255,255,0.25)] min-h-[96px] cursor-pointer"
                   onClick={() => setActiveProjectModal(card.id)}
                 >
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center shrink-0">
+                  {/* Subtle Spotlight Sheen on Hover */}
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] border border-white/[0.1] group-hover:border-red-500/30 flex items-center justify-center shrink-0 shadow-inner transition-colors duration-300">
                     {card.icon}
                   </div>
-                  <div className="flex flex-col gap-1 min-w-0">
-                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white break-words truncate">{card.title}</h3>
+                  <div className="flex flex-col gap-1 min-w-0 z-10">
+                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white group-hover:text-red-300 transition-colors break-words truncate">{card.title}</h3>
                     <p className="text-[11.5px] sm:text-[12px] text-zinc-400 font-light leading-snug break-words">{card.desc}</p>
                   </div>
                 </div>
