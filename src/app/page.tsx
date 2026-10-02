@@ -1197,20 +1197,20 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Action Column - Apple Vision Glass Pill with Moving Spotlight Sheen */}
-            <div className="shrink-0 flex flex-col items-center lg:items-end gap-2 w-full lg:w-auto">
+            {/* Right Action Column - Apple Glass Squircle CTA with Spotlight */}
+            <div className="shrink-0 flex flex-col items-center lg:items-end gap-2.5 w-full lg:w-auto">
               <a
                 href="/resume.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/20 hover:border-white/40 text-white font-semibold text-xs tracking-wider uppercase backdrop-blur-xl transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_15px_35px_rgba(239,68,68,0.2)] cursor-pointer no-underline overflow-hidden w-full sm:w-auto"
+                className="group/btn relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 rounded-xl bg-gradient-to-b from-white/[0.12] to-white/[0.04] hover:from-white/[0.2] hover:to-white/[0.08] border border-white/20 hover:border-white/40 text-white font-semibold text-xs sm:text-[13px] tracking-wide transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_32px_rgba(255,255,255,0.1)] active:scale-[0.98] cursor-pointer no-underline overflow-hidden w-full sm:w-auto"
               >
-                {/* Spotlight Sheen Beam */}
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-                {/* Ambient Radial Spotlight Glow */}
-                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500/20 via-rose-500/20 to-purple-500/20 opacity-0 group-hover/btn:opacity-100 blur-md transition-opacity duration-500 -z-10" />
+                {/* Spotlight Light Sheen */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+                {/* Ambient Glow */}
+                <span className="absolute -inset-1 rounded-xl bg-gradient-to-r from-red-500/20 via-white/10 to-rose-500/20 opacity-0 group-hover/btn:opacity-100 blur-md transition-opacity duration-500 -z-10" />
 
-                <span className="relative z-10 whitespace-nowrap">View / Print B2B Resume</span>
+                <span className="relative z-10">View Official Resume</span>
                 <svg className="relative z-10 w-4 h-4 text-zinc-300 group-hover/btn:text-white transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v5.5m0-5.5L11.25 12.75M6 18h12" />
                 </svg>
