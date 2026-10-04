@@ -785,7 +785,7 @@ export default function Home() {
                 <div 
                   key={card.id} 
                   style={{
-                    animation: `cardStaggerEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 130 + 100}ms backwards`
+                    animation: `cardStaggerEnter 1.4s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 220 + 180}ms backwards`
                   }}
                   className="group relative overflow-hidden flex-1 min-w-[230px] max-w-[340px] p-5 sm:p-6 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] hover:border-red-500/40 backdrop-blur-xl flex items-center gap-4 sm:gap-5 hover:-translate-y-1.5 transition-all duration-500 ease-out select-none shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.15),inset_0_1px_1px_rgba(255,255,255,0.25)] min-h-[96px] cursor-pointer"
                   onClick={() => setActiveProjectModal(card.id)}
