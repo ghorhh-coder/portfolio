@@ -496,12 +496,12 @@ export default function Home() {
          <div className="relative z-10 w-full flex flex-col items-center gap-6 sm:gap-8">
           
           {/* Section 1: Hero Section with Safe Clearance */}
-          <section className="flex flex-col justify-center items-center w-full max-w-[1440px] pl-6 pr-6 sm:pl-12 sm:pr-12 md:pl-16 md:pr-16 mx-auto pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-4 select-none relative">
+          <section className="flex flex-col justify-center items-center w-full max-w-[1440px] pl-6 pr-6 sm:pl-12 sm:pr-12 md:pl-16 md:pr-16 mx-auto pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-4 select-none relative z-30">
             <div className="w-full relative">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start w-full relative">
                 
                 {/* Left Column: Bio & Core Info */}
-                <div className="md:col-span-7 lg:col-span-7 flex flex-col items-start text-left w-full">
+                <div className="md:col-span-7 lg:col-span-7 flex flex-col items-start text-left w-full relative z-20">
                   
                   {/* Dynamic tag badge - Open for Product Engineer & UX Roles */}
                   <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 mb-5 sm:mb-6 select-none shadow-[0_2px_10px_rgba(16,185,129,0.05)]">
@@ -578,11 +578,11 @@ export default function Home() {
                   </div>
    
                   {/* Tech Stack Chips (Premium upscaled glass tags with glowing hovers) */}
-                  <div className="flex flex-col gap-6 items-start w-full">
+                  <div className="flex flex-col gap-6 items-start w-full relative z-20">
                     <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-zinc-500 uppercase select-none">Tech Stack</span>
-                    <div className="flex flex-wrap gap-3 max-w-2xl">
+                    <div className="flex flex-wrap gap-3 max-w-2xl relative">
                       {/* Next.js Badge */}
-                      <span className="relative group h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition-all duration-300 cursor-pointer select-none">
+                      <span className="relative group hover:z-50 h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition-all duration-300 cursor-pointer select-none">
                         <svg className="w-[20px] h-[20px] text-white shrink-0" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="90" cy="90" r="90" fill="black"/>
                           <path d="M149.508 157.52L69.142 54.027H54.027V125.973H67.876V75.632L135.811 162.771C140.716 161.261 145.318 159.488 149.508 157.52Z" fill="white"/>
@@ -590,20 +590,20 @@ export default function Home() {
                         </svg>
                         Next.js
                         {/* Tooltip bubble - Left anchored to prevent screen edge clipping */}
-                        <div className="absolute top-full mt-3 left-0 w-[260px] p-4 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50 flex flex-col gap-1.5 text-left">
+                        <div className="absolute top-full mt-3 left-0 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Framework Experience</span>
+                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Framework Experience</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-300 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
                             Built <strong>13-14 web application projects</strong> and software tools with SSR, server actions, and clean architecture.
                           </p>
-                          <div className="absolute bottom-full left-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-white/10" />
+                          <div className="absolute bottom-full left-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
                         </div>
                       </span>
                       
                       {/* React Badge */}
-                      <span className="relative group h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(0,216,255,0.12)] transition-all duration-300 cursor-pointer select-none">
+                      <span className="relative group hover:z-50 h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(0,216,255,0.12)] transition-all duration-300 cursor-pointer select-none">
                         <svg className="w-[20px] h-[20px] text-[#00d8ff] animate-[spin_20s_linear_infinite] shrink-0" viewBox="-11.5 -10.23174 23 20.46348" fill="none">
                           <ellipse rx="11" ry="4.2" stroke="currentColor" strokeWidth="1.2"/>
                           <ellipse rx="11" ry="4.2" transform="rotate(60)" stroke="currentColor" strokeWidth="1.2"/>
@@ -612,73 +612,73 @@ export default function Home() {
                         </svg>
                         React
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-0 sm:left-1/2 sm:-translate-x-1/2 w-[260px] p-4 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50 flex flex-col gap-1.5 text-left">
+                        <div className="absolute top-full mt-3 left-0 sm:left-1/2 sm:-translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">UI & Client Apps</span>
+                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">UI &amp; Client Apps</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-300 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
                             Built <strong>2-3 desktop and web apps</strong> utilizing robust state systems, modular components, and responsive views.
                           </p>
-                          <div className="absolute bottom-full left-8 sm:left-1/2 sm:-translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-white/10" />
+                          <div className="absolute bottom-full left-8 sm:left-1/2 sm:-translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
                         </div>
                       </span>
    
                       {/* TypeScript Badge */}
-                      <span className="relative group h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(49,120,198,0.12)] transition-all duration-300 cursor-pointer select-none">
+                      <span className="relative group hover:z-50 h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(49,120,198,0.12)] transition-all duration-300 cursor-pointer select-none">
                         <svg className="w-[20px] h-[20px] text-[#3178c6] rounded-[4px] shrink-0" viewBox="0 0 100 100" fill="currentColor">
                           <path d="M0 0h100v100H0z" fill="#3178c6"/>
                           <path d="M36.1 40.5h-8.7V75h-9V40.5H9.7v-7.3h26.4v7.3zm31.7 20c0 3.2-1 5.9-3.1 7.9-2 2-4.8 3-8.3 3-2.9 0-5.6-.6-8-1.9V61.7c2.5 1.7 4.9 2.5 7.1 2.5 1.5 0 2.7-.4 3.6-1.1s1.3-1.8-1.3-3.2c0-1.2-.4-2.2-1.1-3-1-.9-2.5-1.9-4.7-3.1-2.9-1.6-5.1-3.2-6.5-4.8-1.4-1.6-2.1-3.6-2.1-6 0-3 1.1-5.5 3.2-7.5s5-3 8.7-3c2.7 0 5.2.5 7.4 1.6V48c-2.3-1.4-4.3-2.1-6-2.1-1.3 0-2.3.3-3.1.9s-1.2 1.4-1.2 2.5c0 1 .3 1.8 1 2.5.7.7 2 1.6 3.9 2.7 3.1 1.7 5.4 3.4 6.8 5.2s2.1 4 2.1 6.3z" fill="#fff"/>
                         </svg>
                         TypeScript
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[260px] p-4 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50 flex flex-col gap-1.5 text-left">
+                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Type Safety</span>
+                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Type Safety</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-300 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
                             Leveraged TS in <strong>6-7 scale applications</strong>, implementing strong typing, solid OOP interfaces, and reliable data contracts.
                           </p>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-white/10" />
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
                         </div>
                       </span>
    
                       {/* Python Badge */}
-                      <span className="relative group h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(255,222,87,0.12)] transition-all duration-300 cursor-pointer select-none">
+                      <span className="relative group hover:z-50 h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(255,222,87,0.12)] transition-all duration-300 cursor-pointer select-none">
                         <svg className="w-[20px] h-[20px] text-[#ffde57] shrink-0" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M11.93 0C5.33 0 5.48 2.87 5.48 2.87l.06 2.97h6.58v.92H5.56S2.67 6.63 2.67 13.22c0 6.6 2.57 6.35 2.57 6.35h1.53v-2.15s-.08-2.57 2.53-2.57h6.29s2.44.1 2.44-2.48V6.08s.16-6.08-6.1-6.08zm-2.76 1.83a.92.92 0 1 1 0 1.84.92.92 0 0 1 0-1.84zM12.07 24c6.6 0 6.45-2.87 6.45-2.87l-.06-2.97h-6.58v-.92h6.56s2.89.13 2.89-6.46c0-6.6-2.57-6.35-2.57-6.35h-1.53v2.15s.08 2.57-2.53 2.57h-6.29s-2.44-.1-2.44 2.48v6.29s-.16 6.08 6.1 6.08zm2.76-1.83a.92.92 0 1 1 0-1.84.92.92 0 0 1 0 1.84z" />
                         </svg>
                         Python
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[260px] p-4 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50 flex flex-col gap-1.5 text-left">
+                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Core Language</span>
+                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Core Language</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-300 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
                             Built <strong>17-18 projects</strong> (AI Agents, automation scripts, custom bots, pipelines) using Python as my primary backend tool.
                           </p>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-white/10" />
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 sm:left-auto sm:right-8 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
                         </div>
                       </span>
    
                       {/* FastAPI Badge */}
-                      <span className="relative group h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(0,150,136,0.12)] transition-all duration-300 cursor-pointer select-none">
+                      <span className="relative group hover:z-50 h-[42px] pl-5 pr-6 inline-flex items-center gap-2.5 text-[13px] font-semibold tracking-wide rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md text-zinc-250 hover:text-white hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_20px_rgba(0,150,136,0.12)] transition-all duration-300 cursor-pointer select-none">
                         <svg className="w-[20px] h-[20px] text-[#009688] shrink-0" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 0L1.75 6v12L12 24l10.25-6V6L12 0zm-1.25 18v-4.5H8.5l4.75-7.5v4.5h2.25L10.75 18z" />
                         </svg>
                         FastAPI
                         {/* Tooltip bubble - Right anchored */}
-                        <div className="absolute top-full mt-3 right-0 left-auto translate-x-0 w-[260px] p-4 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-2xl opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50 flex flex-col gap-1.5 text-left">
+                        <div className="absolute top-full mt-3 right-0 left-auto translate-x-0 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">API Development</span>
+                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">API Development</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-300 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
                             Designed high-speed microservices, structured REST endpoints, and background workers for automated AI tools.
                           </p>
-                          <div className="absolute bottom-full right-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-white/10" />
+                          <div className="absolute bottom-full right-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
                         </div>
                       </span>
                     </div>
