@@ -590,15 +590,16 @@ export default function Home() {
                         </svg>
                         Next.js
                         {/* Tooltip bubble - Left anchored to prevent screen edge clipping */}
-                        <div className="absolute top-full mt-3 left-0 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Framework Experience</span>
+                        <div className="absolute top-full mt-3 left-0 w-[285px] px-5 py-4.5 rounded-2xl bg-[#09090b]/98 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-2 text-left">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] shrink-0" />
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase leading-none">Framework Experience</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-[1.65] text-zinc-200 normal-case tracking-normal m-0 pr-1">
                             Built <strong>13-14 web application projects</strong> and software tools with SSR, server actions, and clean architecture.
                           </p>
-                          <div className="absolute bottom-full left-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
+                          {/* Seamless arrow pointer with matching border */}
+                          <div className="absolute -top-1.5 left-7 w-3 h-3 bg-[#09090b] border-t border-l border-white/15 rotate-45 pointer-events-none" />
                         </div>
                       </span>
                       
@@ -612,15 +613,16 @@ export default function Home() {
                         </svg>
                         React
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-0 sm:left-1/2 sm:-translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">UI &amp; Client Apps</span>
+                        <div className="absolute top-full mt-3 left-0 sm:left-1/2 sm:-translate-x-1/2 w-[285px] px-5 py-4.5 rounded-2xl bg-[#09090b]/98 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-2 text-left">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] shrink-0" />
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase leading-none">UI &amp; Client Apps</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-[1.65] text-zinc-200 normal-case tracking-normal m-0 pr-1">
                             Built <strong>2-3 desktop and web apps</strong> utilizing robust state systems, modular components, and responsive views.
                           </p>
-                          <div className="absolute bottom-full left-8 sm:left-1/2 sm:-translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
+                          {/* Seamless arrow pointer with matching border */}
+                          <div className="absolute -top-1.5 left-7 sm:left-1/2 sm:-translate-x-1/2 w-3 h-3 bg-[#09090b] border-t border-l border-white/15 rotate-45 pointer-events-none" />
                         </div>
                       </span>
    
@@ -632,15 +634,16 @@ export default function Home() {
                         </svg>
                         TypeScript
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Type Safety</span>
+                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[285px] px-5 py-4.5 rounded-2xl bg-[#09090b]/98 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-2 text-left">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] shrink-0" />
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase leading-none">Type Safety</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-[1.65] text-zinc-200 normal-case tracking-normal m-0 pr-1">
                             Leveraged TS in <strong>6-7 scale applications</strong>, implementing strong typing, solid OOP interfaces, and reliable data contracts.
                           </p>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
+                          {/* Seamless arrow pointer with matching border */}
+                          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#09090b] border-t border-l border-white/15 rotate-45 pointer-events-none" />
                         </div>
                       </span>
    
@@ -651,15 +654,16 @@ export default function Home() {
                         </svg>
                         Python
                         {/* Tooltip bubble */}
-                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">Core Language</span>
+                        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 w-[285px] px-5 py-4.5 rounded-2xl bg-[#09090b]/98 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-2 text-left">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] shrink-0" />
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase leading-none">Core Language</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-[1.65] text-zinc-200 normal-case tracking-normal m-0 pr-1">
                             Built <strong>17-18 projects</strong> (AI Agents, automation scripts, custom bots, pipelines) using Python as my primary backend tool.
                           </p>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 sm:left-auto sm:right-8 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
+                          {/* Seamless arrow pointer with matching border */}
+                          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 sm:left-auto sm:right-8 sm:translate-x-0 md:left-1/2 md:-translate-x-1/2 w-3 h-3 bg-[#09090b] border-t border-l border-white/15 rotate-45 pointer-events-none" />
                         </div>
                       </span>
    
@@ -670,15 +674,16 @@ export default function Home() {
                         </svg>
                         FastAPI
                         {/* Tooltip bubble - Right anchored */}
-                        <div className="absolute top-full mt-3 right-0 left-auto translate-x-0 w-[270px] p-4 rounded-xl bg-[#09090b]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-1.5 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                            <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase">API Development</span>
+                        <div className="absolute top-full mt-3 right-0 left-auto translate-x-0 w-[285px] px-5 py-4.5 rounded-2xl bg-[#09090b]/98 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] opacity-0 scale-95 -translate-y-2 pointer-events-none transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-[100] flex flex-col gap-2 text-left">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] shrink-0" />
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-zinc-400 uppercase leading-none">API Development</span>
                           </div>
-                          <p className="text-[12px] font-normal leading-relaxed text-zinc-200 normal-case tracking-normal">
+                          <p className="text-[12px] font-normal leading-[1.65] text-zinc-200 normal-case tracking-normal m-0 pr-1">
                             Designed high-speed microservices, structured REST endpoints, and background workers for automated AI tools.
                           </p>
-                          <div className="absolute bottom-full right-6 border-x-[6px] border-x-transparent border-b-[6px] border-b-[#09090b]/95" />
+                          {/* Seamless arrow pointer with matching border */}
+                          <div className="absolute -top-1.5 right-7 left-auto w-3 h-3 bg-[#09090b] border-t border-l border-white/15 rotate-45 pointer-events-none" />
                         </div>
                       </span>
                     </div>
@@ -697,19 +702,19 @@ export default function Home() {
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                     
                     {/* Floating Glass Checklist Card */}
-                    <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 w-[190px] sm:w-[230px] p-3.5 sm:p-4.5 rounded-2xl bg-black/55 border border-white/10 backdrop-blur-lg shadow-2xl flex flex-col gap-2.5 sm:gap-3">
+                    <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 w-auto min-w-[210px] sm:min-w-[240px] px-4 py-3.5 sm:px-5 sm:py-4.5 rounded-2xl bg-black/75 border border-white/15 backdrop-blur-xl shadow-2xl flex flex-col gap-2.5 sm:gap-3">
                       {[
                         { text: "UX Craft & Design Systems" },
                         { text: "First-Mile Onboarding" },
                         { text: "Full-Stack Architecture" }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-3 font-bold text-white text-[10.5px] sm:text-xs">
+                        <div key={idx} className="flex items-center gap-3 font-bold text-white text-[10.5px] sm:text-xs whitespace-nowrap">
                           <span className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-red-600/15 border border-red-500/25 flex items-center justify-center text-red-500 shrink-0 select-none">
                             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                           </span>
-                          <span className="break-words text-zinc-100">{item.text}</span>
+                          <span className="text-zinc-100">{item.text}</span>
                         </div>
                       ))}
                     </div>
@@ -796,8 +801,8 @@ export default function Home() {
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] border border-white/[0.1] group-hover:border-red-500/30 flex items-center justify-center shrink-0 shadow-inner transition-colors duration-300">
                     {card.icon}
                   </div>
-                  <div className="flex flex-col gap-1 min-w-0 z-10">
-                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white group-hover:text-red-300 transition-colors break-words truncate">{card.title}</h3>
+                  <div className="flex flex-col gap-1 min-w-0 z-10 flex-1 pr-1">
+                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white group-hover:text-red-300 transition-colors truncate">{card.title}</h3>
                     <p className="text-[11.5px] sm:text-[12px] text-zinc-400 font-light leading-snug break-words">{card.desc}</p>
                   </div>
                 </div>
@@ -809,7 +814,7 @@ export default function Home() {
 
       {/* Section 2: Selected Work (Featured Projects Card Panel) - Pushed down comfortably */}
       {!loading && gateUnlocked && (
-        <section id="work" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-8 sm:p-10 lg:p-12 relative overflow-hidden select-none mt-12 sm:mt-16 md:mt-20 lg:mt-24">
+        <section id="work" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-5 sm:p-10 lg:p-12 relative overflow-hidden select-none mt-12 sm:mt-16 md:mt-20 lg:mt-24">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-20">
             <div className="flex flex-col gap-4">
               <span className="text-[11px] font-semibold tracking-[0.25em] text-red-400 uppercase inline-block">Featured Work</span>
@@ -918,12 +923,12 @@ export default function Home() {
  
       {/* Section 3: Metrics / Highlights Section */}
       {!loading && gateUnlocked && (
-        <section className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-8 sm:p-10 lg:p-12 select-none">
+        <section className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-5 sm:p-10 lg:p-12 select-none">
           <div className="max-w-[1440px] mx-auto">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               
               {/* Metric 1 */}
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-md flex flex-col gap-2 hover:border-red-500/20 hover:bg-white/[0.04] transition-all duration-300 shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
+              <div className="p-4 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-md flex flex-col gap-2 hover:border-red-500/20 hover:bg-white/[0.04] transition-all duration-300 shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
                 <span className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-500 leading-none tracking-tight">5+</span>
                 <span className="text-[11px] font-semibold tracking-wider text-zinc-500 uppercase">Production Apps</span>
               </div>
@@ -953,7 +958,7 @@ export default function Home() {
  
       {/* Section: B2B Contractor Experience & Track Record */}
       {!loading && gateUnlocked && (
-        <section id="experience" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-6 sm:p-10 lg:p-12 select-none flex flex-col gap-10 sm:gap-14 overflow-hidden">
+        <section id="experience" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-5 sm:p-10 lg:p-12 select-none flex flex-col gap-10 sm:gap-14 overflow-hidden">
           
           {/* Ambient Glow Effects */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -1230,8 +1235,8 @@ export default function Home() {
 
       {/* Section 4: Contact Form / Footer Panel */}
       {!loading && gateUnlocked && (
-        <section id="contact" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-8 sm:p-10 lg:p-12 flex flex-col items-center justify-center text-center">
-          <div className="w-full max-w-3xl p-8 sm:p-10 lg:p-12 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl flex flex-col items-center gap-8 shadow-[0_15px_50px_rgba(0,0,0,0.4)] transition-all duration-500">
+        <section id="contact" className="relative z-10 w-full max-w-[1440px] rounded-xl sm:rounded-2xl crystal-glass p-5 sm:p-10 lg:p-12 flex flex-col items-center justify-center text-center">
+          <div className="w-full max-w-3xl p-6 sm:p-10 lg:p-12 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-red-500/20 backdrop-blur-xl flex flex-col items-center gap-8 shadow-[0_15px_50px_rgba(0,0,0,0.4)] transition-all duration-500">
             <span className="text-[11px] font-semibold tracking-[0.25em] text-red-400 uppercase">Start a Project</span>
             <h2 className="text-3xl sm:text-5xl font-display font-bold uppercase leading-tight px-2 text-foreground break-words">
               Let&apos;s Build Something Premium Together.
@@ -1890,7 +1895,7 @@ export default function Home() {
 
                       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mt-1">
                         <div>
-                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
+                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase pr-10 sm:pr-0">
                             Q-Link Chat
                           </h2>
                           <p className="text-red-400 text-xs sm:text-sm font-semibold tracking-widest uppercase mt-2">
@@ -2234,7 +2239,7 @@ export default function Home() {
           {/* Centering wrapper — min-h-full keeps card centered when short, scroll works when tall */}
           <div className="relative flex min-h-full items-center justify-center p-4 py-8">
           {/* Gating crystal glass container */}
-          <div className="relative w-full max-w-3xl p-8 sm:p-12 md:p-14 rounded-2xl bg-zinc-950/80 border border-white/10 backdrop-blur-2xl shadow-2xl animate-scaleUp">
+          <div className="relative w-full max-w-3xl p-5 sm:p-10 md:p-14 rounded-2xl bg-zinc-950/80 border border-white/10 backdrop-blur-2xl shadow-2xl animate-scaleUp">
             {/* Close / Dismiss Vetting Gate Button */}
             <button
               onClick={unlockGate}
@@ -2292,7 +2297,7 @@ export default function Home() {
                 </div>
 
                 {/* ── Process strip ── */}
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {[
                     { label: '4 Questions', sub: 'Stack · Role · Culture · Budget' },
                     { label: '~2 Minutes', sub: 'Quick structured intake' },
