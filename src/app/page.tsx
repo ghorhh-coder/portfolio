@@ -1544,21 +1544,64 @@ export default function Home() {
             />
 
             {/* Modal Glass Window Wrapper */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 pointer-events-none select-none">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 pointer-events-none select-none">
               <div
-                className="pointer-events-auto relative w-full max-w-5xl max-h-[88vh] rounded-3xl bg-zinc-950/95 border border-white/10 backdrop-blur-2xl shadow-[0_30px_90px_rgba(239,68,68,0.15)] overflow-y-auto p-6 sm:p-10 md:p-12 pb-12 sm:pb-16 flex flex-col gap-8 sm:gap-10 animate-scaleUp text-white"
+                className="pointer-events-auto relative w-full max-w-5xl max-h-[90vh] rounded-3xl bg-[#09090b]/98 border border-white/15 backdrop-blur-3xl shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_50px_rgba(239,68,68,0.18)] flex flex-col overflow-hidden animate-scaleUp text-white"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Top Close Button */}
-                <button
-                  onClick={() => setActiveProjectModal(null)}
-                  className="absolute top-4 right-4 sm:top-6 sm:right-6 text-zinc-400 hover:text-white bg-white/[0.03] hover:bg-white/[0.1] p-2.5 rounded-full border border-white/10 transition-all duration-300 cursor-pointer z-30 shadow-lg"
-                  title="Close Case Study"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                {/* ── Fixed Sticky Modal Header (Guarantees zero text/dot clipping & instant access) ── */}
+                <div className="sticky top-0 z-40 px-5 sm:px-8 py-3.5 sm:py-4 bg-[#09090b]/95 backdrop-blur-2xl border-b border-white/[0.08] flex items-center justify-between gap-4 shrink-0">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] animate-pulse shrink-0" />
+                    <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] text-zinc-400 uppercase truncate">
+                      {project.category}
+                    </span>
+                    <span className="hidden sm:inline-block text-zinc-600 font-mono text-xs">/</span>
+                    <span className="hidden sm:inline-block text-xs font-display font-bold text-white uppercase tracking-wider truncate">
+                      {project.title}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3 shrink-0">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-[10.5px] sm:text-[11px] tracking-wider uppercase transition-all duration-300 shadow-[0_2px_12px_rgba(239,68,68,0.4)] no-underline cursor-pointer"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0" />
+                        <span className="whitespace-nowrap">Launch Live</span>
+                        <svg className="w-3 h-3 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v5.5m0-5.5L11.25 12.75M6 18h12" />
+                        </svg>
+                      </a>
+                    )}
+                    {project.github && !project.liveUrl && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-[10.5px] tracking-wider uppercase transition-all duration-300 no-underline cursor-pointer"
+                      >
+                        <span>GitHub</span>
+                      </a>
+                    )}
+                    <button
+                      onClick={() => setActiveProjectModal(null)}
+                      className="p-2 sm:p-2.5 rounded-full text-zinc-400 hover:text-white bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
+                      title="Close (Esc)"
+                      aria-label="Close Case Study"
+                    >
+                      <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* ── Scrollable Modal Body ── */}
+                <div className="overflow-y-auto px-5 sm:px-10 md:px-12 py-6 sm:py-8 flex flex-col gap-8 sm:gap-10">
 
                 {activeProjectModal === "promptops" ? (
                   /* ── PROMPTOPS VIDEO CASE STUDY ── */
@@ -1880,22 +1923,22 @@ export default function Home() {
                     
                     {/* 1. HERO HEADER BLOCK */}
                     <div className="flex flex-col gap-4 border-b border-white/[0.08] pb-6 sm:pb-8">
-                      <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-2.5">
                         <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 font-mono text-[10px] sm:text-[11px] font-bold tracking-widest uppercase">
-                          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#ef4444]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#ef4444]" />
                           Secure Communication Startup
                         </span>
-                        <span className="px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-400 font-mono text-[10px] font-semibold tracking-wider">
+                        <span className="px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider">
                           0.3% FOUNDING EQUITY
                         </span>
-                        <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-semibold tracking-wider">
+                        <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider">
                           PRODUCTION READY PWA
                         </span>
                       </div>
 
                       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mt-1">
-                        <div>
-                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase pr-10 sm:pr-0">
+                        <div className="flex-1">
+                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
                             Q-Link Chat
                           </h2>
                           <p className="text-red-400 text-xs sm:text-sm font-semibold tracking-widest uppercase mt-2">
@@ -1911,18 +1954,33 @@ export default function Home() {
                           href="https://q-link-v3-0.vercel.app"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group shrink-0 inline-flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] no-underline cursor-pointer"
+                          className="group shrink-0 inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] no-underline cursor-pointer"
                         >
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_8px_#34d399]" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_8px_#34d399]" />
                           <span>Launch Live App</span>
                           <svg className="w-4 h-4 text-white shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v5.5m0-5.5L11.25 12.75M6 18h12" />
                           </svg>
                         </a>
                       </div>
+
+                      {/* Value Metrics Quick Bar */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        {[
+                          { value: "0.3%", label: "Founding Equity" },
+                          { value: "< 100ms", label: "Crypto Latency" },
+                          { value: "100%", label: "Client-Side Zero-Knowledge" },
+                          { value: "99.9%", label: "PWA Offline Uptime" }
+                        ].map((m, idx) => (
+                          <div key={idx} className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex flex-col gap-1">
+                            <span className="text-base sm:text-lg font-bold font-mono text-white">{m.value}</span>
+                            <span className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-wider">{m.label}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
-                    {/* 2. 6-IMAGE GALLERY GRID (Responsive across ALL screens) */}
+                    {/* 2. 6-IMAGE GALLERY GRID (Curated Bento Cards with Zero Text Overlap!) */}
                     <div className="flex flex-col gap-4">
                       <div className="flex items-center justify-between">
                         <div>
@@ -1930,90 +1988,130 @@ export default function Home() {
                             Application Interface &amp; UI Screens
                           </span>
                           <p className="text-zinc-400 text-xs mt-1 font-light">
-                            Click any screenshot to inspect in full-screen high-resolution lightbox
+                            Click any screen to inspect in full-screen high-resolution lightbox
                           </p>
                         </div>
-                        <span className="text-xs font-mono text-zinc-500">6 Screens</span>
+                        <span className="text-xs font-mono text-zinc-500">6 High-Res Screens</span>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-2">
-                        {[1, 2, 3, 4, 5, 6].map((idx) => (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {[
+                          { idx: 1, title: "Client Onboarding", subtitle: "Zero-knowledge key generation & ID setup" },
+                          { idx: 2, title: "Discovery Hub", subtitle: "Real-time room exploration & channels" },
+                          { idx: 3, title: "Global Community", subtitle: "Encrypted handle indexing & feed" },
+                          { idx: 4, title: "Sapphire VIP Suite", subtitle: "Cryptographic tier verification & perks" },
+                          { idx: 5, title: "Privacy & Controls", subtitle: "Session wipes, telemetry & key export" },
+                          { idx: 6, title: "Encrypted Chat", subtitle: "Sub-100ms AES-GCM real-time stream" }
+                        ].map((screen) => (
                           <div
-                            key={idx}
-                            onClick={() => setLightboxImageIndex(idx - 1)}
-                            className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:border-red-500/40 transition-all duration-300 cursor-pointer aspect-video shadow-xl"
+                            key={screen.idx}
+                            onClick={() => setLightboxImageIndex(screen.idx - 1)}
+                            className="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-[#0d0d12]/90 hover:border-red-500/40 transition-all duration-300 cursor-pointer shadow-xl hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(239,68,68,0.18)]"
                           >
-                            <img
-                              src={`/qlink/img${idx}.png`}
-                              alt={`Q-Link App Screen ${idx}`}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                            
-                            {/* Dark gradient overlay on hover */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
-                              <div className="self-end px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[10px] font-mono text-white flex items-center gap-1.5">
-                                <svg className="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                                </svg>
-                                <span>EXPAND</span>
+                            <div className="relative aspect-video w-full overflow-hidden bg-black">
+                              <img
+                                src={`/qlink/img${screen.idx}.png`}
+                                alt={`Q-Link App Screen ${screen.idx}`}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                              {/* Sleek bottom-right expand hint — NO OVERLAP WITH HEADER TEXT! */}
+                              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-3 pointer-events-none">
+                                <span className="px-2.5 py-1 rounded-full bg-black/80 border border-white/20 backdrop-blur-md text-[10px] font-mono text-white flex items-center gap-1.5 shadow-lg">
+                                  <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                                  </svg>
+                                  <span>ENLARGE</span>
+                                </span>
                               </div>
-                              <span className="text-xs font-mono text-white font-medium tracking-wider">
-                                Screen 0{idx} &mdash; Click to Enlarge
-                              </span>
                             </div>
-
-                            {/* Corner Badge */}
-                            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 border border-white/10 text-[9.5px] font-mono text-zinc-300 backdrop-blur-md">
-                              0{idx}
+                            
+                            {/* Optical Caption Footer */}
+                            <div className="p-3.5 sm:p-4 bg-white/[0.015] border-t border-white/5 flex flex-col gap-1">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-xs font-bold text-white group-hover:text-red-400 transition-colors tracking-wide">
+                                  {screen.title}
+                                </span>
+                                <span className="text-[10px] font-mono text-zinc-500 uppercase">
+                                  0{screen.idx}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-zinc-400 font-light leading-snug line-clamp-1">
+                                {screen.subtitle}
+                              </p>
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* 3. KEY ENGINEERING HIGHLIGHTS (Glass Cards) */}
+                    {/* 3. KEY ENGINEERING HIGHLIGHTS (Bento Cards with Zero Collision) */}
                     <div className="flex flex-col gap-4 mt-2">
                       <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-zinc-500 uppercase">
                         Technical Architecture &amp; Engineering Vectors
                       </span>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-1">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {[
                           {
                             title: "E2E Cryptography",
                             desc: "Zero-knowledge encryption strictly executed on client-side utilizing browser Web Crypto API (AES-GCM / Diffie-Hellman ECDH key exchange).",
-                            badge: "Web Crypto API"
+                            badge: "Web Crypto API",
+                            icon: (
+                              <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                              </svg>
+                            )
                           },
                           {
                             title: "Serverless Resiliency",
                             desc: "Structured background push notification dispatcher utilizing Promise.allSettled edge functions on Vercel infrastructure.",
-                            badge: "Promise.allSettled"
+                            badge: "Promise.allSettled",
+                            icon: (
+                              <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                              </svg>
+                            )
                           },
                           {
                             title: "Offline Sync Engine",
                             desc: "Configured fault-tolerant Service Worker with local cache sync and system-level App Badging API bindings.",
-                            badge: "PWA Service Worker"
+                            badge: "PWA Service Worker",
+                            icon: (
+                              <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                              </svg>
+                            )
                           },
                           {
                             title: "Client-Side Compression",
                             desc: "HTML5 Canvas-based dynamic client-side image payload compressor enforcing strict 4.5MB network limits.",
-                            badge: "HTML5 Canvas"
+                            badge: "HTML5 Canvas",
+                            icon: (
+                              <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                              </svg>
+                            )
                           }
                         ].map((item, i) => (
                           <div
                             key={i}
-                            className="p-7 sm:p-9 rounded-[4px] bg-white/[0.02] border border-white/[0.08] hover:border-red-500/30 transition-all duration-300 flex flex-col justify-between gap-4 backdrop-blur-md"
+                            className="p-5 sm:p-6 rounded-2xl bg-white/[0.025] border border-white/[0.08] hover:border-red-500/30 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between gap-4 backdrop-blur-md shadow-lg"
                           >
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2.5">
                               <div className="flex items-center justify-between gap-3">
-                                <h3 className="text-base sm:text-lg font-bold text-white tracking-wide min-w-0 flex-1">
-                                  {item.title}
-                                </h3>
-                                <span className="px-3.5 py-1 rounded-[3px] bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[10px] whitespace-nowrap shrink-0">
+                                <div className="flex items-center gap-2.5">
+                                  <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                                    {item.icon}
+                                  </div>
+                                  <h3 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                                    {item.title}
+                                  </h3>
+                                </div>
+                                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-[9.5px] sm:text-[10px] whitespace-nowrap shrink-0">
                                   {item.badge}
                                 </span>
                               </div>
-                              <p className="text-zinc-300 text-xs sm:text-sm font-light leading-relaxed text-left">
+                              <p className="text-zinc-300 text-xs sm:text-[13px] font-light leading-relaxed text-left">
                                 {item.desc}
                               </p>
                             </div>
@@ -2028,7 +2126,7 @@ export default function Home() {
                         Technology Stack
                       </span>
                       <div className="flex flex-wrap gap-2.5">
-                        {["Next.js", "React 19", "Prisma ORM", "Neon Postgres", "Web Crypto API", "Service Workers"].map((tech, i) => (
+                        {["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Prisma ORM", "Neon Postgres", "Web Crypto API", "Service Workers"].map((tech, i) => (
                           <span
                             key={i}
                             className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-red-500/30 text-zinc-300 text-xs font-mono font-medium transition-all duration-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap shrink-0"
@@ -2051,17 +2149,17 @@ export default function Home() {
                         </span>
                       </div>
 
-                      <div className="w-full rounded-2xl border border-white/10 bg-black/80 p-5 font-mono text-xs leading-relaxed text-emerald-400 shadow-inner overflow-x-auto relative">
+                      <div className="w-full rounded-2xl border border-white/10 bg-black/85 p-5 font-mono text-xs leading-relaxed text-emerald-400 shadow-inner overflow-x-auto relative">
                         <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10 text-zinc-500 select-none">
                           <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                           <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                           <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                           <span className="ml-2 text-[10px] text-zinc-400 font-semibold">SHELL_TRACE_SYS</span>
                         </div>
-                        <div className="flex flex-col gap-1 text-[11px] sm:text-xs">
+                        <div className="flex flex-col gap-1.5 text-[11px] sm:text-xs">
                           <p className="text-zinc-500">[SECURE] Launching zero-knowledge client cryptographic handshake...</p>
                           <p className="text-emerald-400">&gt; Generating ECDH keypair utilizing browser Web Crypto API...</p>
-                          <p className="text-emerald-400">&gt; Public key exported: 04a8b8c8d... [256-bit]</p>
+                          <p className="text-emerald-400">&gt; Public key exported: 04a8b8c8d... [256-bit prime256v1 curve]</p>
                           <p className="text-zinc-500">[KEY_EXCHANGE] Deriving shared secret key via ECDH scheme...</p>
                           <p className="text-amber-400">&gt; Shared AES-GCM key derived on client-side.</p>
                           <p className="text-emerald-400">&gt; Encrypting message: "Zero-Knowledge message verification payload"</p>
@@ -2072,17 +2170,17 @@ export default function Home() {
                     </div>
 
                     {/* 6. CASE STUDY FOOTER & LIVE CTA */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-white/[0.08] mt-2">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] mt-2">
                       <div className="flex flex-col gap-1 text-center sm:text-left">
                         <span className="text-white text-sm font-bold tracking-wide">Ready to test Q-Link Chat?</span>
-                        <span className="text-zinc-400 text-xs font-light">Experience end-to-end zero-knowledge security live in browser.</span>
+                        <span className="text-zinc-400 text-xs font-light">Experience end-to-end zero-knowledge security live in your browser.</span>
                       </div>
 
                       <a
                         href="https://q-link-v3-0.vercel.app"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] no-underline cursor-pointer w-full sm:w-auto shrink-0 flex-nowrap"
+                        className="group inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.3)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.5)] no-underline cursor-pointer w-full sm:w-auto shrink-0 flex-nowrap"
                       >
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_8px_#34d399]" />
                         <span>Launch Live App</span>
@@ -2163,6 +2261,7 @@ export default function Home() {
                     <div className="h-6 sm:h-10 w-full shrink-0" aria-hidden="true" />
                   </div>
                 )}
+                </div>
               </div>
             </div>
 
