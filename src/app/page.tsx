@@ -503,10 +503,10 @@ export default function Home() {
                 {/* Left Column: Bio & Core Info */}
                 <div className="md:col-span-7 lg:col-span-7 flex flex-col items-start text-left w-full">
                   
-                  {/* Dynamic tag badge - Open for B2B Projects */}
+                  {/* Dynamic tag badge - Open for Product Engineer & UX Roles */}
                   <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 mb-5 sm:mb-6 select-none shadow-[0_2px_10px_rgba(16,185,129,0.05)]">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
-                    <span className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.2em] uppercase text-emerald-400">Open for B2B Projects</span>
+                    <span className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.2em] uppercase text-emerald-400">Available for Product Engineer &amp; UX Roles</span>
                   </div>
                   
                   {/* Main Heading */}
@@ -520,7 +520,7 @@ export default function Home() {
                   
                   {/* Short Description */}
                   <p className="max-w-lg text-[14.5px] sm:text-[16.5px] font-sans text-zinc-300 tracking-wide font-light leading-relaxed break-words mb-6 sm:mb-7">
-                    AI-First Contractor & AI-Product Engineer building production-ready software, intelligent automation, and modern web apps.
+                    Product Engineer &amp; UX Builder specializing in high-craft design systems, intuitive first-mile onboarding, and resilient full-stack web applications.
                   </p>
    
                   {/* Action Buttons (Premium soft gradient & glass) */}
@@ -699,9 +699,9 @@ export default function Home() {
                     {/* Floating Glass Checklist Card */}
                     <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 w-[190px] sm:w-[230px] p-3.5 sm:p-4.5 rounded-2xl bg-black/55 border border-white/10 backdrop-blur-lg shadow-2xl flex flex-col gap-2.5 sm:gap-3">
                       {[
-                        { text: "AI Products" },
-                        { text: "Automation" },
-                        { text: "Modern Web Apps" }
+                        { text: "UX Craft & Design Systems" },
+                        { text: "First-Mile Onboarding" },
+                        { text: "Full-Stack Architecture" }
                       ].map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3 font-bold text-white text-[10.5px] sm:text-xs">
                           <span className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-red-600/15 border border-red-500/25 flex items-center justify-center text-red-500 shrink-0 select-none">
@@ -827,11 +827,12 @@ export default function Home() {
                 <span className="text-[10px] text-zinc-500 font-mono tracking-wider">profile.json</span>
               </div>
               <div className="font-mono text-[11px] leading-relaxed text-zinc-300">
-                <p><span className="text-pink-500">const</span> developer = &#123;</p>
-                <p className="pl-4"><span className="text-purple-400">role</span>: <span className="text-emerald-400">&quot;AI Product Engineer&quot;</span>,</p>
-                <p className="pl-4"><span className="text-purple-400">status</span>: <span className="text-emerald-400">&quot;Building&quot;</span>,</p>
-                <p className="pl-4"><span className="text-purple-400">location</span>: <span className="text-emerald-400">&quot;India&quot;</span>,</p>
-                <p className="pl-4"><span className="text-purple-400">availability</span>: <span className="text-amber-400">true</span></p>
+                <p><span className="text-pink-500">const</span> engineer = &#123;</p>
+                <p className="pl-4"><span className="text-purple-400">role</span>: <span className="text-emerald-400">&quot;Product Engineer, UX&quot;</span>,</p>
+                <p className="pl-4"><span className="text-purple-400">focus</span>: <span className="text-emerald-400">&quot;Design Systems &amp; Workflows&quot;</span>,</p>
+                <p className="pl-4"><span className="text-purple-400">stack</span>: <span className="text-emerald-400">&quot;React &bull; TS &bull; Python&quot;</span>,</p>
+                <p className="pl-4"><span className="text-purple-400">precision</span>: <span className="text-emerald-400">&quot;2px / Zero Layout Shift&quot;</span>,</p>
+                <p className="pl-4"><span className="text-purple-400">available</span>: <span className="text-amber-400">true</span></p>
                 <p>&#125;;</p>
               </div>
             </div>
@@ -904,11 +905,11 @@ export default function Home() {
 
               <div className="relative z-10 flex justify-between items-center">
                 <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/[0.15] flex items-center justify-center text-xs sm:text-sm font-bold text-emerald-400 shadow-inner group-hover:border-emerald-500/40 transition-colors">04</div>
-                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">Secure Real-Time PWA</span>
+                <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase bg-white/[0.05] px-3.5 py-1.5 rounded-full border border-white/[0.1] backdrop-blur-md">UX &amp; E2EE Systems</span>
               </div>
               <div className="relative z-10 mt-6">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-wider mb-2 text-white group-hover:text-emerald-300 transition-colors break-words">Q-Link Platform</h3>
-                <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">Next-generation real-time encrypted communications platform with WebSocket state engines, ephemeral media auto-purge, and desktop integration.</p>
+                <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed break-words">Next-generation real-time encrypted platform built with zero-knowledge Web Crypto, tactile glassmorphism design system, and sub-100ms state sync.</p>
               </div>
             </div>
           </div>
@@ -1173,7 +1174,7 @@ export default function Home() {
             <div className="flex-1 min-w-0 flex flex-col gap-3 text-left w-full">
               <div className="flex items-center gap-3 flex-wrap">
                 <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold tracking-wide m-0 p-0 font-display">
-                  Need an Official B2B Contractor Resume?
+                  Need an Official Product Engineer &amp; UX Resume?
                 </h3>
                 <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[9.5px] font-bold tracking-widest uppercase flex items-center gap-1.5 shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
@@ -1192,7 +1193,7 @@ export default function Home() {
                   <span className="px-2.5 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 font-mono text-xs font-semibold">Antigravity (4M)</span>
                 </div>
                 <p className="text-zinc-400 text-xs sm:text-[13px] font-normal leading-relaxed m-0 p-0">
-                  Engineering progression, high-concurrency real-time engines, and verifiable production architecture.
+                  Design systems evolution, first-mile onboarding architectures, and verifiable full-stack systems.
                 </p>
               </div>
             </div>
@@ -1276,31 +1277,31 @@ export default function Home() {
           liveUrl?: string;
         }> = {
           promptops: {
-            category: "AI SaaS",
+            category: "AI SaaS & Design Systems",
             title: "PromptOps Platform",
             tagline: "Enterprise System Prompt Security & Analytics SaaS",
             desc: "A production-grade prompt operations and analysis hub designed to audit, filter, and inspect complex system prompts of commercial AI agents and models.",
             tech: ["React", "TypeScript", "Node.js", "Express", "Tailwind CSS"],
             highlights: [
-              "Static analysis scorecard evaluating instructions against 4 safety vectors (Jailbreak, Leakage, Format, Context).",
-              "Dynamic Prompt Defense Score calculations (0-100%) and interactive rings.",
-              "Auditor Sandbox & Playpen Simulator with simulated adversarial queries (jailbreaks).",
-              "Heuristic Auto-Optimizer transforming plain-text instructions into structured role configs."
+              "Workflow Simulators: Built interactive auditor sandboxes with real-time prompt jailbreak simulations and visual defense score rings.",
+              "Thoughtful Empty & Loading States: Designed custom skeleton loaders and informative empty states ensuring zero jarring transitions during heavy LLM evaluations.",
+              "Design Language: Unified typography, color tokens, and interactive inspection charts into a coherent enterprise design system.",
+              "Heuristic Auto-Optimizer: Interactive flow converting unstructured text into structured, hardened system configs with 1-click diff previews."
             ],
             video: "/PromptOps_Demo_Voiced.mp4",
             github: "https://github.com/system-prompts-and-models-of-ai-tools-main/ai-prompt-analyzer"
           },
           qlink: {
-            category: "Secure Communication Startup",
-            title: "Q-Link Chat",
-            tagline: "Zero-Knowledge Encrypted Messaging Platform",
-            desc: "A client-side end-to-end encrypted messaging Progressive Web App engineered entirely from scratch for a private startup founder in return for 0.3% founding equity.",
-            tech: ["Next.js", "React 19", "Prisma ORM", "Neon Postgres", "Web Crypto API", "Service Workers"],
+            category: "Flagship Product Engineering",
+            title: "Q-Link Platform",
+            tagline: "Zero-Knowledge Encrypted Messaging & Real-Time UX Engine",
+            desc: "A production-grade encrypted communications web app engineered with deep UX craft: zero-knowledge Web Crypto, fluid glassmorphic design system, tactile micro-interactions, and resilient offline state sync.",
+            tech: ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "Web Crypto API", "Prisma", "Neon Postgres"],
             highlights: [
-              "E2E Cryptography: Zero-knowledge encryption on client-side utilizing Web Crypto API (AES-GCM/Diffie-Hellman).",
-              "Serverless Resiliency: Structured background push notifications using Promise.allSettled on Vercel.",
-              "Offline Sync: Configured fault-tolerant Service Worker with local cache sync and system App Badging.",
-              "Image Compression: Implemented HTML5 Canvas-based client-side compression to satisfy 4.5MB payload limit."
+              "First-Mile Onboarding: Engineered seamless client-side key generation that makes complex zero-knowledge cryptography feel instant and invisible within seconds.",
+              "Novel Interaction Workflows: Built triple-state delivery indicators (Sent, Delivered, Seen), real-time optimistic chat updates, and modal lightboxes with zero layout shift.",
+              "Design System: Crafted an Apple-grade dark glassmorphism component library with custom spring physics, responsive layouts, and WCAG-compliant contrast.",
+              "Full-Stack Reliability: Backed by serverless edge workers, Neon PostgreSQL database schemas, and service-worker caching for instant cold starts."
             ],
             liveUrl: "https://q-link-v3-0.vercel.app"
           },
