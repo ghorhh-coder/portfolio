@@ -690,13 +690,12 @@ export default function Home() {
                   </div>
                 </div>
                 
-                {/* Right Column: Cinematic Portrait & checklist glass overlay card */}
-                {/* Right Column: Cinematic Portrait & checklist glass overlay card */}
+                {/* Right Column: Engineering Core Architecture & checklist glass overlay card */}
                 <div className="md:col-span-5 lg:col-span-5 flex items-start justify-center md:justify-end w-full select-none pt-4 sm:pt-6 md:pt-10 lg:pt-12">
                   <div className="relative w-[280px] h-[340px] sm:w-[330px] sm:h-[400px] md:w-[320px] md:h-[390px] lg:w-[410px] lg:h-[490px] xl:w-[460px] xl:h-[550px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group border border-white/10 mt-6 sm:mt-8 md:mt-4 lg:mt-6">
                     <img 
                       src="/developer.png" 
-                      alt="Developer Portrait" 
+                      alt="Product Engineering Architecture" 
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-all duration-700 ease-out"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
